@@ -11,9 +11,7 @@ body { font-family:'Poppins', sans-serif; margin:0; background:#0f172a; color:wh
 header { display:flex; justify-content:space-between; padding:20px 40px; }
 .hero { text-align:center; padding:100px 20px; }
 .hero h1 { font-size:48px; }
-
 .section { padding:60px 20px; max-width:1100px; margin:auto; }
-
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:25px; }
 
 .card {
@@ -49,16 +47,8 @@ input, select {
   border:none;
 }
 
-.total {
-  font-size:22px;
-  font-weight:600;
-  margin-top:10px;
-}
-
-.info {
-  font-size:14px;
-  color:#cbd5f5;
-}
+.total { font-size:22px; font-weight:600; margin-top:10px; }
+.info { font-size:14px; color:#cbd5f5; }
 
 .btn {
   background:#ff4d6d;
@@ -66,7 +56,6 @@ input, select {
   border:none;
   width:100%;
   border-radius:10px;
-  cursor:pointer;
 }
 </style>
 </head>
@@ -154,11 +143,10 @@ async function calculDistance() {
     const lat = data.features[0].geometry.coordinates[1];
     const lon = data.features[0].geometry.coordinates[0];
 
-    // 📍 Lunéville
     const latL = 48.5929;
     const lonL = 6.4967;
 
-    // 🔥 Haversine (distance stable)
+    // 🔥 Calcul distance
     const R = 6371;
     const dLat = (lat - latL) * Math.PI / 180;
     const dLon = (lon - lonL) * Math.PI / 180;
@@ -171,7 +159,10 @@ async function calculDistance() {
       Math.sin(dLon / 2);
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c;
+    let distance = R * c;
+
+    // 🔥 CORRECTION ROUTE
+    distance = distance * 1.4;
 
     if (distance <= 15) {
       transportCost = 0;
