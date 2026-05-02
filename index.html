@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Trema Multi-Services — Photobooth IA Premium</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -67,32 +67,22 @@ nav.scrolled{padding:14px 60px;box-shadow:0 4px 40px rgba(123,63,160,0.1)}
 .s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);line-height:1.1;color:var(--dark)}
 .s-title em{font-style:italic;background:linear-gradient(135deg,var(--gold),var(--violet2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-/* BEFORE/AFTER */
-.ba-bg{background:linear-gradient(180deg,var(--warm) 0%,#e8ddf5 50%,var(--cream) 100%);padding:100px 0}
+/* VIDÉOS IA — style Frizbooth */
+.ba-bg{background:linear-gradient(180deg,var(--warm) 0%,#e8ddf5 60%,var(--cream) 100%);padding:100px 0}
 .ba-inner{max-width:1300px;margin:0 auto;padding:0 60px}
-.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
-.ba-card{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;user-select:none;box-shadow:0 20px 60px rgba(123,63,160,0.2);touch-action:none}
-.ba-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
-.ba-after{z-index:1}
-.ba-before-overlay{position:absolute;inset:0;z-index:2;overflow:hidden;width:50%}
-.ba-before-overlay img{width:200%;max-width:none;height:100%;object-fit:cover}
-.ba-divider{position:absolute;top:0;bottom:0;z-index:3;left:50%;transform:translateX(-50%);width:3px;background:linear-gradient(to bottom,var(--gold),var(--violet))}
-.ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));border:3px solid var(--white);box-shadow:0 4px 20px rgba(201,148,42,0.5);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--white);font-weight:700;cursor:grab}
-.ba-handle:active{cursor:grabbing}
-.ba-labels{position:absolute;bottom:16px;left:0;right:0;z-index:4;display:flex;justify-content:space-between;padding:0 14px;pointer-events:none}
-.ba-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;background:rgba(255,255,255,0.95);padding:5px 12px;border-radius:100px;font-weight:600}
-.ba-label.after{color:var(--violet);border:1px solid rgba(123,63,160,0.3)}
-.ba-label.before{color:var(--muted)}
-.ba-title{text-align:center;margin-top:14px;font-size:13px;color:var(--muted)}
-/* Mobile: sliders statiques */
-@media(pointer:coarse){
-  .ba-card{cursor:default}
-  .ba-before-overlay{width:50%!important}
-  .ba-divider{left:50%!important}
-  .ba-handle{cursor:default}
-  .ba-hint{display:block!important}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:60px}
+.ba-card{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:9/16;box-shadow:0 24px 70px rgba(123,63,160,0.25);background:var(--dark)}
+.ba-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ba-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,46,0.85) 0%,rgba(26,15,46,0.1) 40%,transparent 70%);z-index:2;pointer-events:none}
+.ba-card-content{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:24px 22px}
+.ba-card-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:8px}
+.ba-card-desc{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;font-weight:300}
+.ba-card-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(201,148,42,0.25);border:1px solid rgba(201,148,42,0.5);color:var(--gold-light);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:12px;backdrop-filter:blur(6px)}
+.ba-card:hover video{transform:scale(1.03);transition:transform 6s ease}
+@media(max-width:900px){
+  .ba-grid{grid-template-columns:1fr;gap:20px}
+  .ba-card{aspect-ratio:9/14}
 }
-.ba-hint{display:none;text-align:center;margin-top:8px;font-size:11px;color:var(--violet);font-style:italic}
 
 /* TARIFS (Options à cocher) */
 .pricing-bg{background:linear-gradient(180deg,var(--cream) 0%,#f8f0e8 100%);padding:100px 0}
@@ -247,22 +237,35 @@ footer{background:var(--dark);padding:60px;display:flex;justify-content:space-be
 @media(max-width:900px){
   nav{padding:16px 20px}
   .nav-links{display:none}
-  .ba-inner,.pricing-inner,.extras-inner,.resa-inner,.ent-body{padding:60px 20px}
-  .ba-grid{grid-template-columns:1fr}
-  .ia-cards{grid-template-columns:1fr}
-  .extras-grid{grid-template-columns:1fr}
-  .resa-grid{grid-template-columns:1fr;gap:40px}
-  .form-2col{grid-template-columns:1fr}
-  .hero-stats{gap:30px}
-  footer{flex-direction:column;gap:24px;text-align:center;padding:40px 24px}
-  .pay-opts{grid-template-columns:1fr 1fr}
-  .form-wrap{padding:28px 20px}
-  .ent-grid{grid-template-columns:1fr}
-  .ent-header{padding:20px 24px}
-  .ent-body{padding:30px 20px}
-  .ent-hero{padding:40px 24px}
-  .ent-hero h2{font-size:36px}
   nav .nav-enterprise{display:none}
+  .ba-inner,.pricing-inner,.extras-inner,.resa-inner,.ent-body{padding:50px 16px}
+  .ba-grid{grid-template-columns:1fr;gap:20px}
+  .ba-card{aspect-ratio:9/14}
+  .ia-cards{grid-template-columns:1fr}
+  .ia-card{padding:18px 16px}
+  .ia-card-name{font-size:16px}
+  .ia-card-desc{font-size:12px}
+  .extras-grid{grid-template-columns:1fr}
+  .extra-card{padding:22px 18px}
+  .resa-grid{grid-template-columns:1fr;gap:32px}
+  .resa-bg{padding:60px 0}
+  .form-2col{grid-template-columns:1fr}
+  .hero-stats{gap:24px}
+  .hero-stats .stat-num{font-size:32px}
+  .hero-stats .stat-label{font-size:10px}
+  .hero h1{font-size:clamp(36px,10vw,58px)!important}
+  .hero-sub{font-size:14px}
+  .s-title{font-size:clamp(26px,7vw,40px)!important}
+  footer{flex-direction:column;gap:20px;text-align:center;padding:36px 16px}
+  .form-wrap{padding:22px 16px}
+  .ent-grid{grid-template-columns:1fr}
+  .ent-header{padding:18px 20px}
+  .ent-body{padding:24px 16px}
+  .ent-hero{padding:36px 20px}
+  .ent-hero h2{font-size:32px}
+  .pricing-inner{padding:60px 16px}
+  .form-section-title{font-size:10px}
+  .gcal-wrap iframe{height:300px}
 }
 </style>
 </head>
@@ -300,7 +303,7 @@ footer{background:var(--dark);padding:60px;display:flex;justify-content:space-be
             <tr><td>700 impressions</td><td class="ht">275,00 €</td><td>330,00 €</td></tr>
           </tbody>
         </table>
-        <p class="ent-note">TVA 20% · Prix nets, sans escompte</p>
+        <p class="ent-note">TVA 20% · Prix nets, sans escompte · Paiement par Stripe (CB, virement)</p>
 
         <h3 style="margin-top:32px">Options IA — Tarifs HT</h3>
         <table class="ent-table">
@@ -379,8 +382,8 @@ footer{background:var(--dark);padding:60px;display:flex;justify-content:space-be
   <h1>Votre Photobooth<br><em>Sublimé par l'IA</em></h1>
   <p class="hero-sub">Des photos de mariage aux soirées d'entreprise — transformez chaque moment en souvenir magique. Résultats en 5 secondes.</p>
   <div class="hero-btns">
-    <a href="#reservation" class="btn-gold">Réserver maintenant</a>
-    <a href="#avantapres" class="btn-outline">Voir la magie</a>
+    <a href="#reservation" class="btn-gold" onclick="smoothTo(event,'reservation')">Réserver maintenant</a>
+    <a href="#avantapres" class="btn-outline" onclick="smoothTo(event,'avantapres')">Voir la magie</a>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">5"</div><div class="stat-label">Résultat IA</div></div>
@@ -390,43 +393,53 @@ footer{background:var(--dark);padding:60px;display:flex;justify-content:space-be
   <div class="hero-scroll"><div class="scroll-line"></div>Découvrir</div>
 </div>
 
-<!-- AVANT / APRÈS -->
+<!-- VIDÉOS IA — style Frizbooth -->
 <div class="ba-bg" id="avantapres">
 <div class="ba-inner">
-  <span class="s-label reveal">Avant / Après</span>
-  <h2 class="s-title reveal">Glissez pour voir<br><em>la magie opérer</em></h2>
-  <p style="color:var(--muted);margin-top:16px;font-size:15px;font-weight:300;max-width:500px" class="reveal">Faites glisser le curseur sur chaque photo pour comparer l'original et le résultat IA.</p>
+  <span class="s-label reveal">Nos technologies</span>
+  <h2 class="s-title reveal">L'IA au cœur de<br><em>chaque souvenir</em></h2>
+  <p style="color:var(--muted);margin-top:16px;font-size:15px;font-weight:300;max-width:520px" class="reveal">Trois technologies exclusives pour transformer vos événements en expériences inoubliables.</p>
   <div class="ba-grid reveal">
-    <div>
-      <div class="ba-card" data-card="1">
-        <img class="ba-after" src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80" alt="After">
-        <div class="ba-before-overlay" id="overlay1"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80" alt="Before"></div>
-        <div class="ba-divider" id="divider1"><div class="ba-handle">◀▶</div></div>
-        <div class="ba-labels"><span class="ba-label before">Avant</span><span class="ba-label after">IA Générative</span></div>
+
+    <div class="ba-card">
+      <video autoplay muted loop playsinline preload="metadata"
+        src="https://frizbooth.com/wp-content/uploads/2025/11/IA-Gen.mp4"
+        poster="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80">
+      </video>
+      <div class="ba-card-overlay"></div>
+      <div class="ba-card-content">
+        <div class="ba-card-tag">🤖 IA Générative</div>
+        <div class="ba-card-title">Costumes &amp; univers fantastiques</div>
+        <div class="ba-card-desc">Créez des images ultra-réalistes en 5 secondes. Jusqu'à 8 personnes, identité préservée.</div>
       </div>
-      <p class="ba-hint">Positionné à 50% — glissez sur desktop</p>
-      <p class="ba-title">Couple → Univers Cyberpunk</p>
     </div>
-    <div>
-      <div class="ba-card" data-card="2">
-        <img class="ba-after" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="After">
-        <div class="ba-before-overlay" id="overlay2"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80" alt="Before"></div>
-        <div class="ba-divider" id="divider2"><div class="ba-handle">◀▶</div></div>
-        <div class="ba-labels"><span class="ba-label before">Avant</span><span class="ba-label after">IA Détourage</span></div>
+
+    <div class="ba-card">
+      <video autoplay muted loop playsinline preload="metadata"
+        src="https://frizbooth.com/wp-content/uploads/2025/11/IA-Det.mp4"
+        poster="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80">
+      </video>
+      <div class="ba-card-overlay"></div>
+      <div class="ba-card-content">
+        <div class="ba-card-tag">🌄 IA Détourage</div>
+        <div class="ba-card-title">Décors illimités, sans fond vert</div>
+        <div class="ba-card-desc">Notre IA garantit des photos pro parfaites, sans complexité technique.</div>
       </div>
-      <p class="ba-hint">Positionné à 50% — glissez sur desktop</p>
-      <p class="ba-title">Fond quelconque → Décor pro</p>
     </div>
-    <div>
-      <div class="ba-card" data-card="3">
-        <img class="ba-after" src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80" alt="After">
-        <div class="ba-before-overlay" id="overlay3"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80" alt="Before"></div>
-        <div class="ba-divider" id="divider3"><div class="ba-handle">◀▶</div></div>
-        <div class="ba-labels"><span class="ba-label before">Avant</span><span class="ba-label after">Friz Generator</span></div>
+
+    <div class="ba-card">
+      <video autoplay muted loop playsinline preload="metadata"
+        src="https://frizbooth.com/wp-content/uploads/2025/02/FRIZ.mp4"
+        poster="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80">
+      </video>
+      <div class="ba-card-overlay"></div>
+      <div class="ba-card-content">
+        <div class="ba-card-tag">🎭 Friz Generator</div>
+        <div class="ba-card-title">Souvenirs collectifs uniques</div>
+        <div class="ba-card-desc">Technologie exclusive qui rassemble vos invités sur un support photo &amp; vidéo inédit.</div>
       </div>
-      <p class="ba-hint">Positionné à 50% — glissez sur desktop</p>
-      <p class="ba-title">Groupe → Fusion épique</p>
     </div>
+
   </div>
 </div>
 </div>
@@ -562,7 +575,7 @@ footer{background:var(--dark);padding:60px;display:flex;justify-content:space-be
       </div>
       <div class="resa-box">
         <div class="resa-box-title">💳 Paiement sécurisé</div>
-        <p>Acompte de 50% via <strong>Stripe</strong> (CB, virement) ou <strong>PayPal</strong>. Solde le jour J.</p>
+        <p>Acompte de 50% via <strong>Stripe</strong> — CB, virement, Apple Pay, Google Pay. Solde le jour J.</p>
       </div>
       <div class="resa-box">
         <div class="resa-box-title">📅 Calendrier des disponibilités</div>
@@ -580,7 +593,7 @@ footer{background:var(--dark);padding:60px;display:flex;justify-content:space-be
           title="Calendrier des disponibilités Trema Photobooth">
         </iframe>
       </div>
-      <p style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center;">Dates en rouge = réservées · Dates libres = disponibles</p>
+      <p style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center;">Dates en rouge = réservées · Dates en blanc = disponibles</p>
     </div>
 
     <div class="form-wrap reveal">
@@ -662,17 +675,13 @@ footer{background:var(--dark);padding:60px;display:flex;justify-content:space-be
       <div class="form-divider"></div>
       <div class="form-section-title">💳 Paiement de l'acompte (50%)</div>
       <div class="form-row">
-        <div class="pay-opts">
-          <div class="pay-opt active" onclick="selectPay(this,'stripe')">
-            <span class="pi">💳</span>
-            <span class="pn">Stripe</span>
-            <span class="pd">CB · Virement bancaire</span>
+        <div style="background:var(--warm);border-radius:14px;padding:18px 20px;border:2px solid var(--gold);display:flex;align-items:center;gap:16px">
+          <span style="font-size:28px">💳</span>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--dark)">Stripe — Paiement sécurisé</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:3px">Carte bancaire · Virement · Apple Pay · Google Pay</div>
           </div>
-          <div class="pay-opt" onclick="selectPay(this,'paypal')">
-            <span class="pi">🅿️</span>
-            <span class="pn">PayPal</span>
-            <span class="pd">Compte PayPal</span>
-          </div>
+          <div style="margin-left:auto;background:linear-gradient(135deg,var(--gold),var(--gold2));color:white;font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px">Sécurisé</div>
         </div>
       </div>
 
@@ -682,9 +691,12 @@ footer{background:var(--dark);padding:60px;display:flex;justify-content:space-be
         <div class="sum-line"><span id="sum-prints-label">100 impressions</span><span id="sum-prints">210 €</span></div>
         <div class="sum-line" id="sum-ia-line" style="display:none"><span>Options IA</span><span id="sum-ia">0 €</span></div>
         <div class="sum-line" id="sum-extras-line" style="display:none"><span>Locations +</span><span id="sum-extras">0 €</span></div>
-        <div class="sum-line" id="sum-transport-line" style="display:none"><span>Transport</span><span id="sum-transport">0 €</span></div>
-        <div class="sum-line main"><span>Total estimé TTC</span><span id="total-price">210 €</span></div>
-        <div class="sum-acompte" id="sum-acompte">Acompte à la réservation (50%) : <strong>105 €</strong></div>
+        <div class="sum-line" id="sum-transport-line" style="display:none"><span style="color:#c0392b">🚗 Transport estimé*</span><span style="color:#c0392b" id="sum-transport">0 €</span></div>
+        <div class="sum-line main"><span>Total acompte (50%) TTC</span><span id="total-price">105 €</span></div>
+        <div id="transport-warning" style="display:none;background:#fff5f5;border:1px solid #f5c6c6;border-radius:10px;padding:10px 14px;margin-top:10px;font-size:12px;color:#c0392b;line-height:1.5">
+          ⚠️ <strong>Transport non inclus dans l'acompte.</strong> Le coût de déplacement (~<span id="transport-warning-val">0</span> €) sera réglé en supplément le jour de la location.
+        </div>
+        <div class="sum-acompte" id="sum-acompte">Acompte à régler maintenant : <strong>105 €</strong></div>
       </div>
 
       <button class="btn-submit" onclick="submitForm()">Envoyer ma demande de réservation →</button>
@@ -706,11 +718,14 @@ footer{background:var(--dark);padding:60px;display:flex;justify-content:space-be
 </footer>
 
 <script>
+// SMOOTH SCROLL
+function smoothTo(e,id){e.preventDefault();const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+
 // CURSOR
 const cur=document.getElementById('cursor'),dot=document.getElementById('cursorDot');
 if(cur){
   document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px'});
-  document.querySelectorAll('a,button,.extra-card,.ia-card,.pay-opt,.ba-card,.custom-select-trigger,.custom-select-option').forEach(el=>{
+  document.querySelectorAll('a,button,.extra-card,.ia-card,.ba-card,.custom-select-trigger,.custom-select-option').forEach(el=>{
     el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(1.8)';cur.style.background='rgba(201,148,42,0.15)'});
     el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';cur.style.background='transparent'});
   });
@@ -718,24 +733,6 @@ if(cur){
 
 // NAV SCROLL
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50));
-
-// BEFORE/AFTER — desktop only, mobile stays static
-const isMobile=window.matchMedia('(pointer:coarse)').matches;
-if(!isMobile){
-  [1,2,3].forEach(n=>{
-    const card=document.querySelector(`[data-card="${n}"]`),ov=document.getElementById(`overlay${n}`),div=document.getElementById(`divider${n}`);
-    let drag=false;
-    function setPos(x){
-      const r=card.getBoundingClientRect();
-      const pct=Math.min(Math.max((x-r.left)/r.width*100,0),100);
-      ov.style.width=pct+'%';div.style.left=pct+'%';
-      ov.querySelector('img').style.width=(pct>0?(100/(pct/100)):200)+'%';
-    }
-    card.addEventListener('mousedown',e=>{drag=true;setPos(e.clientX);e.preventDefault()});
-    window.addEventListener('mousemove',e=>{if(drag)setPos(e.clientX)});
-    window.addEventListener('mouseup',()=>drag=false);
-  });
-}
 
 // CUSTOM SELECT
 const selectState={event:{value:'',label:'Sélectionner...'},prints:{value:210,label:'100 impressions — 210 € TTC'}};
@@ -855,19 +852,20 @@ function updateExtrasFormSummary(){
   else{box.innerHTML=keys.map(k=>`<div class="extras-sum-item"><span>${extrasState[k].name}</span><span style="font-weight:600;color:var(--gold)">${extrasState[k].price} €</span></div>`).join('')}
 }
 
-// PAYMENT
-let selectedPay='stripe';
-function selectPay(el,type){
-  document.querySelectorAll('.pay-opt').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');selectedPay=type;
-}
+// PAYMENT — Stripe only (no function needed)
 
-// DISTANCE
-let transportCost=0;
+// DISTANCE — info only, not added to acompte
+let transportEstimate=0;
 async function calculDistance(){
   const adresse=document.getElementById('adresse').value;
   const info=document.getElementById('transportInfo');
-  if(!adresse||adresse.length<3){transportCost=0;info.textContent='';calculTotal();return}
+  if(!adresse||adresse.length<3){
+    transportEstimate=0;
+    info.textContent='';
+    document.getElementById('sum-transport-line').style.display='none';
+    document.getElementById('transport-warning').style.display='none';
+    calculTotal();return;
+  }
   try{
     const res=await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(adresse+' France')}&limit=1`);
     const data=await res.json();
@@ -878,30 +876,39 @@ async function calculDistance(){
     const a=Math.sin(dLat/2)**2+Math.cos(latL*Math.PI/180)*Math.cos(lat*Math.PI/180)*Math.sin(dLon/2)**2;
     let dist=R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
     dist*=(dist<10?1.2:dist<30?1.3:1.4);
-    if(dist<=15){transportCost=0;info.textContent=`📍 ~${dist.toFixed(1)} km — Livraison offerte ✓`}
-    else{transportCost=Math.ceil((dist-15)*0.5*2)/2;info.textContent=`📍 ~${dist.toFixed(1)} km — Transport estimé : ${transportCost.toFixed(2)} €`}
+    if(dist<=15){
+      transportEstimate=0;
+      info.innerHTML='<span style="color:var(--violet)">📍 ~'+dist.toFixed(1)+' km — Livraison offerte ✓</span>';
+      document.getElementById('sum-transport-line').style.display='none';
+      document.getElementById('transport-warning').style.display='none';
+    } else {
+      transportEstimate=Math.ceil((dist-15)*0.5*2)/2;
+      info.innerHTML='<span style="color:#c0392b">📍 ~'+dist.toFixed(1)+' km — Transport estimé : '+transportEstimate.toFixed(2)+' € (réglé le jour J)</span>';
+      document.getElementById('sum-transport-line').style.display='flex';
+      document.getElementById('sum-transport').textContent=transportEstimate.toFixed(2)+' €';
+      document.getElementById('transport-warning').style.display='block';
+      document.getElementById('transport-warning-val').textContent=transportEstimate.toFixed(2);
+    }
     calculTotal();
   }catch(e){info.textContent=''}
 }
 
-// TOTAL
+// TOTAL — transport NOT included in acompte
 function calculTotal(){
   const prints=parseInt(document.getElementById('prints-val').value)||210;
   const iaKeys=Object.keys(iaState).filter(k=>k!=='ia-none');
   const iaCount=iaKeys.length;
   const iaExtra=iaCount===1?60:iaCount===2?90:iaCount>=3?110:0;
   const extrasTotal=Object.values(extrasState).reduce((s,e)=>s+e.price,0);
-  const total=prints+iaExtra+extrasTotal+transportCost;
-  const acompte=(total*0.5).toFixed(2);
+  const subtotal=prints+iaExtra+extrasTotal;
+  const acompte=(subtotal*0.5).toFixed(2);
   document.getElementById('sum-prints').textContent=prints+' €';
-  document.getElementById('total-price').textContent=total.toFixed(2)+' €';
-  document.getElementById('sum-acompte').innerHTML=`Acompte à la réservation (50%) : <strong style="color:var(--violet)">${acompte} €</strong>`;
+  document.getElementById('total-price').textContent=acompte+' €';
+  document.getElementById('sum-acompte').innerHTML=`Acompte à régler maintenant : <strong style="color:var(--violet)">${acompte} €</strong>`;
   const il=document.getElementById('sum-ia-line');
   if(iaExtra>0){il.style.display='flex';document.getElementById('sum-ia').textContent=iaExtra+' €'}else il.style.display='none';
-  const el=document.getElementById('sum-extras-line');
-  if(extrasTotal>0){el.style.display='flex';document.getElementById('sum-extras').textContent=extrasTotal.toFixed(2)+' €'}else el.style.display='none';
-  const tl=document.getElementById('sum-transport-line');
-  if(transportCost>0){tl.style.display='flex';document.getElementById('sum-transport').textContent=transportCost.toFixed(2)+' €'}else tl.style.display='none';
+  const el2=document.getElementById('sum-extras-line');
+  if(extrasTotal>0){el2.style.display='flex';document.getElementById('sum-extras').textContent=extrasTotal.toFixed(2)+' €'}else el2.style.display='none';
 }
 calculTotal();
 
