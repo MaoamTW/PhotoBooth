@@ -3,170 +3,1148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Photobooth IA Lunéville</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Trema Multi-Services — Photobooth Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-body { font-family:'Poppins', sans-serif; margin:0; background:#0f172a; color:white; }
-header { display:flex; justify-content:space-between; padding:20px 40px; }
-.hero { text-align:center; padding:100px 20px; }
-.hero h1 { font-size:48px; }
-.section { padding:60px 20px; max-width:1100px; margin:auto; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:25px; }
-.card { background:#1e293b; padding:25px; border-radius:16px; transition:0.3s; }
-.card:hover { transform:translateY(-8px); background:#334155; }
-.compare { display:flex; overflow-x:auto; gap:20px; padding:20px; }
-.compare div { min-width:250px; background:#1e293b; padding:20px; border-radius:12px; text-align:center; }
-.reservation { background:#1e293b; padding:30px; border-radius:16px; max-width:600px; margin:auto; }
-input, select { width:100%; padding:12px; margin:10px 0; border-radius:8px; border:none; }
-.total { font-size:22px; font-weight:600; margin-top:10px; }
-.info { font-size:14px; color:#cbd5f5; }
-.btn { background:#ff4d6d; padding:15px; border:none; width:100%; border-radius:10px; }
+:root {
+  --gold: #c9a84c;
+  --gold2: #e8c96a;
+  --gold3: #f5e199;
+  --purple: #7c3aed;
+  --purple2: #9d5cf5;
+  --purple3: #c084fc;
+  --bg: #10071e;
+  --bg2: #160e2a;
+  --bg3: #1e1535;
+  --bg4: #271c42;
+  --white: #faf7ff;
+  --muted: #9d93b8;
+  --border: rgba(201,168,76,0.2);
+  --border-p: rgba(157,92,245,0.25);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--purple),var(--gold));border-radius:3px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 60px;transition:all 0.4s;
+}
+nav.scrolled{background:rgba(16,7,30,0.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 60px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--gold);letter-spacing:3px;text-decoration:none;line-height:1}
+.logo small{display:block;font-family:'Outfit',sans-serif;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--purple3);font-weight:300;margin-top:1px}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:color 0.3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%);
+  color:#10071e;padding:11px 28px;border-radius:100px;font-size:12px;letter-spacing:2px;
+  text-transform:uppercase;font-weight:600;text-decoration:none;transition:all 0.3s;
+  box-shadow:0 4px 24px rgba(201,168,76,0.35);
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,168,76,0.55)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:400}
+.burger span{width:26px;height:2px;background:var(--gold);border-radius:2px;transition:all 0.3s;display:block}
+.mobile-menu{
+  display:none;position:fixed;inset:0;background:rgba(16,7,30,0.98);z-index:250;
+  flex-direction:column;justify-content:center;align-items:center;gap:36px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:20px;color:var(--white);text-decoration:none;letter-spacing:3px;text-transform:uppercase;font-family:'Cormorant Garamond',serif}
+.mobile-menu a:hover{color:var(--gold)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;
+}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,0.3),transparent 70%);top:-10%;left:-15%;animation:float1 9s ease-in-out infinite}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,0.2),transparent 70%);bottom:-15%;right:-10%;animation:float2 11s ease-in-out infinite}
+.orb3{width:350px;height:350px;background:radial-gradient(circle,rgba(168,85,247,0.18),transparent 70%);top:50%;left:60%;animation:float1 13s ease-in-out infinite 2s}
+@keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.05)}}
+@keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-25px,35px) scale(1.08)}}
+
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--border);background:rgba(201,168,76,0.06);
+  color:var(--gold2);font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  padding:8px 22px;border-radius:100px;margin-bottom:36px;
+  opacity:0;animation:fadeUp 0.8s 0.2s forwards;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(52px,8vw,96px);line-height:1.02;max-width:850px;
+  font-weight:700;
+  opacity:0;animation:fadeUp 0.8s 0.4s forwards;
+}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--gold),var(--purple3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{
+  max-width:520px;margin:28px auto 0;color:var(--muted);font-size:17px;line-height:1.8;font-weight:300;
+  opacity:0;animation:fadeUp 0.8s 0.6s forwards;
+}
+.hero-btns{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  margin-top:52px;opacity:0;animation:fadeUp 0.8s 0.8s forwards;
+}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));color:#10071e;
+  border:none;padding:17px 44px;font-family:'Outfit',sans-serif;font-size:13px;
+  letter-spacing:2px;text-transform:uppercase;font-weight:600;cursor:pointer;
+  border-radius:100px;transition:all 0.3s;text-decoration:none;display:inline-block;
+  box-shadow:0 6px 28px rgba(201,168,76,0.4);
+}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(201,168,76,0.6)}
+.btn-outline{
+  background:transparent;color:var(--white);
+  border:1px solid rgba(255,255,255,0.2);padding:17px 44px;
+  font-family:'Outfit',sans-serif;font-size:13px;letter-spacing:2px;
+  text-transform:uppercase;cursor:pointer;border-radius:100px;
+  transition:all 0.3s;text-decoration:none;display:inline-block;
+}
+.btn-outline:hover{border-color:var(--purple3);color:var(--purple3)}
+.scroll-hint{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--muted);font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  opacity:0;animation:fadeUp 0.8s 1.2s forwards;
+}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--purple3),transparent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* ── STATS BAND ── */
+.stats-band{
+  background:linear-gradient(135deg,var(--bg3),var(--bg4));
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:48px 60px;
+}
+.stats-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;color:var(--gold);line-height:1}
+.stat-label{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+
+/* ── SECTIONS ── */
+.section{padding:100px 60px;max-width:1300px;margin:0 auto}
+.section-wrap{padding:100px 0}
+.section-inner{max-width:1300px;margin:0 auto;padding:0 60px}
+.label{
+  display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--purple3);margin-bottom:14px;
+}
+.title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,56px);line-height:1.12;font-weight:700}
+.title em{font-style:italic;color:var(--gold)}
+.subtitle{color:var(--muted);font-size:15px;line-height:1.8;font-weight:300;margin-top:16px}
+
+/* ── FEATURES ── */
+.features-bg{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.features-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  margin-top:64px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;
+}
+.feature-card{
+  background:var(--bg2);padding:52px 40px;transition:background 0.4s;position:relative;overflow:hidden;
+}
+.feature-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--purple),var(--gold));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.5s;
+}
+.feature-card:hover{background:var(--bg3)}
+.feature-card:hover::after{transform:scaleX(1)}
+.f-num{font-family:'Cormorant Garamond',serif;font-size:60px;color:rgba(201,168,76,0.1);line-height:1;margin-bottom:20px;font-weight:700}
+.f-icon{font-size:36px;display:block;margin-bottom:18px}
+.feature-card h3{font-family:'Cormorant Garamond',serif;font-size:26px;margin-bottom:14px;font-weight:600}
+.feature-card p{color:var(--muted);font-size:14px;line-height:1.8;font-weight:300}
+
+/* ── AVANT APRES ── */
+.ba-wrap{background:var(--bg2)}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.ba-card{
+  position:relative;border-radius:16px;overflow:hidden;
+  aspect-ratio:3/4;cursor:col-resize;user-select:none;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+.ba-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba-after{z-index:1}
+.ba-before-overlay{position:absolute;inset:0;z-index:2;overflow:hidden;width:50%}
+.ba-before-overlay img{width:200%;max-width:none;height:100%;object-fit:cover}
+.ba-divider{
+  position:absolute;top:0;bottom:0;z-index:3;left:50%;transform:translateX(-50%);
+  width:3px;background:linear-gradient(to bottom,var(--gold),var(--purple));cursor:col-resize;
+}
+.ba-divider::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--purple2));
+  border:3px solid rgba(16,7,30,0.8);box-shadow:0 0 24px rgba(201,168,76,0.6);
+}
+.ba-divider::after{content:'◀ ▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:8px;color:#10071e;letter-spacing:-2px;font-weight:900;white-space:nowrap}
+.ba-labels{position:absolute;bottom:16px;left:0;right:0;z-index:4;display:flex;justify-content:space-between;padding:0 14px;pointer-events:none}
+.ba-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;background:rgba(16,7,30,0.85);padding:5px 14px;border-radius:100px;backdrop-filter:blur(6px)}
+.ba-label.after{color:var(--gold);border:1px solid var(--border)}
+.ba-label.before{color:var(--muted)}
+.ba-caption{text-align:center;margin-top:14px;font-size:13px;color:var(--muted);letter-spacing:1px}
+
+/* ── TARIFS ── */
+.pricing-wrap{background:var(--bg)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.pricing-extra-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:24px}
+.pricing-card{
+  background:var(--bg2);border:1px solid var(--border-p);border-radius:20px;
+  padding:48px 36px;position:relative;transition:all 0.4s;
+}
+.pricing-card:hover{transform:translateY(-8px);border-color:var(--border);box-shadow:0 24px 60px rgba(0,0,0,0.4)}
+.pricing-card.featured{
+  border-color:var(--gold);
+  background:linear-gradient(160deg,var(--bg3),rgba(201,168,76,0.05));
+  box-shadow:0 0 60px rgba(201,168,76,0.12);
+}
+.pricing-badge{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--gold),var(--gold2));color:#10071e;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 18px;border-radius:100px;font-weight:700;white-space:nowrap;
+}
+.pricing-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600}
+.pricing-price{font-size:52px;font-weight:300;margin:20px 0 4px;line-height:1}
+.pricing-price sup{font-size:22px;vertical-align:top;margin-top:12px}
+.pricing-sub{color:var(--muted);font-size:13px;margin-bottom:32px}
+.pricing-list{list-style:none;margin-bottom:36px}
+.pricing-list li{
+  padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:14px;color:var(--muted);display:flex;align-items:center;gap:10px;
+}
+.pricing-list li.yes{color:var(--white)}
+.pricing-list li::before{content:'✦';color:var(--gold);font-size:10px;flex-shrink:0}
+.pricing-list li.no::before{content:'—';color:rgba(255,255,255,0.15)}
+.pricing-list li.no{color:rgba(255,255,255,0.2)}
+.pricing-note{
+  text-align:center;color:var(--muted);font-size:12px;margin-top:32px;
+  border-top:1px solid var(--border);padding-top:24px;line-height:1.8;
+}
+.pricing-note span{color:var(--gold)}
+
+/* ── LOCATIONS SUPP ── */
+.loc-wrap{background:var(--bg2)}
+.loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px}
+.loc-card{
+  background:var(--bg3);border:1px solid var(--border-p);border-radius:16px;
+  padding:32px 28px;cursor:pointer;transition:all 0.3s;position:relative;
+  user-select:none;
+}
+.loc-card:hover{border-color:rgba(201,168,76,0.35);transform:translateY(-4px)}
+.loc-card.selected{border-color:var(--gold);background:linear-gradient(135deg,var(--bg3),rgba(201,168,76,0.06))}
+.loc-card.selected .loc-check{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:var(--gold)}
+.loc-card.selected .loc-check::after{content:'✓';color:#10071e;font-size:13px;font-weight:700}
+.loc-icon{font-size:34px;margin-bottom:16px;display:block}
+.loc-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:8px}
+.loc-desc{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:16px}
+.loc-price{color:var(--gold);font-size:15px;font-weight:500}
+.loc-check{
+  position:absolute;top:16px;right:16px;width:26px;height:26px;
+  border:2px solid rgba(255,255,255,0.15);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;transition:all 0.3s;
+}
+/* Quantité pour certains items */
+.loc-qty{
+  display:flex;align-items:center;gap:10px;margin-top:14px;
+}
+.loc-qty-btn{
+  width:28px;height:28px;border-radius:50%;border:1px solid var(--border);
+  background:transparent;color:var(--white);cursor:pointer;font-size:16px;
+  display:flex;align-items:center;justify-content:center;transition:all 0.2s;
+}
+.loc-qty-btn:hover{background:var(--gold);color:#10071e;border-color:var(--gold)}
+.loc-qty-num{font-size:16px;font-weight:500;min-width:24px;text-align:center}
+
+/* ── RÉSERVATION ── */
+.resa-wrap{background:var(--bg)}
+.resa-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;margin-top:64px;align-items:start}
+.resa-info h3{font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:20px;font-weight:600}
+.resa-info p{color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:18px}
+.resa-block{
+  background:var(--bg2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;
+  padding:20px 24px;margin-top:20px;
+}
+.resa-block strong{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:6px}
+.resa-block p{margin:0;font-size:13px;color:var(--muted)}
+
+.form-box{
+  background:var(--bg2);border:1px solid var(--border-p);border-radius:20px;padding:52px 44px;
+}
+.form-row{margin-bottom:22px}
+.form-row label{
+  display:block;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:9px;font-weight:500;
+}
+.form-row input,.form-row select,.form-row textarea{
+  width:100%;background:var(--bg);border:1px solid rgba(255,255,255,0.1);
+  color:var(--white);padding:14px 18px;border-radius:10px;
+  font-family:'Outfit',sans-serif;font-size:15px;transition:border-color 0.3s;outline:none;
+  appearance:none;
+}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--gold)}
+.form-row textarea{resize:vertical;min-height:100px}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-select-wrap{position:relative}
+.form-select-wrap::after{content:'▾';position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:14px}
+
+/* Options IA dans le formulaire */
+.ia-options{display:flex;flex-direction:column;gap:10px}
+.ia-opt{
+  display:flex;align-items:center;gap:14px;
+  background:var(--bg);border:1px solid rgba(255,255,255,0.08);border-radius:10px;
+  padding:14px 18px;cursor:pointer;transition:all 0.25s;
+}
+.ia-opt:hover{border-color:var(--border-p)}
+.ia-opt.active{border-color:var(--gold);background:rgba(201,168,76,0.04)}
+.ia-opt input[type=checkbox]{display:none}
+.ia-chk{
+  width:22px;height:22px;border:2px solid rgba(255,255,255,0.15);border-radius:6px;
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s;
+}
+.ia-opt.active .ia-chk{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:var(--gold)}
+.ia-opt.active .ia-chk::after{content:'✓';color:#10071e;font-size:12px;font-weight:700}
+.ia-info{flex:1}
+.ia-name{font-size:14px;font-weight:500}
+.ia-desc{font-size:12px;color:var(--muted);margin-top:2px}
+.ia-pr{font-size:13px;color:var(--gold);font-weight:500;white-space:nowrap}
+
+/* Impressions selector */
+.print-opts{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.print-opt{
+  background:var(--bg);border:1px solid rgba(255,255,255,0.08);border-radius:10px;
+  padding:14px 10px;cursor:pointer;text-align:center;transition:all 0.25s;
+}
+.print-opt:hover{border-color:var(--border-p)}
+.print-opt.active{border-color:var(--gold);background:rgba(201,168,76,0.06)}
+.print-opt .pn{font-size:15px;font-weight:600;color:var(--white)}
+.print-opt .pp{font-size:12px;color:var(--muted);margin-top:4px}
+.print-opt.active .pp{color:var(--gold)}
+
+/* Paiement */
+.pay-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.pay-opt{
+  background:var(--bg);border:1px solid rgba(255,255,255,0.08);border-radius:10px;
+  padding:14px 8px;cursor:pointer;text-align:center;font-size:12px;
+  transition:all 0.2s;color:var(--muted);
+}
+.pay-opt:hover{border-color:var(--border-p);color:var(--white)}
+.pay-opt.active{border-color:var(--gold);color:var(--gold)}
+.pay-opt .pi{font-size:22px;display:block;margin-bottom:6px}
+
+/* Transport */
+.transport-info{margin-top:6px;font-size:12px;color:var(--purple3);min-height:18px}
+
+/* Récap total */
+.form-total{background:var(--bg);border-radius:12px;padding:22px 26px;margin:24px 0}
+.total-line{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:8px}
+.total-line.main{font-size:18px;color:var(--white);font-weight:500;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px;margin-top:14px}
+.total-acompte{color:var(--gold2);font-size:13px;margin-top:6px;text-align:right}
+
+.btn-submit{
+  width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#10071e;border:none;padding:18px;font-family:'Outfit',sans-serif;
+  font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:700;
+  cursor:pointer;border-radius:100px;transition:all 0.3s;
+  box-shadow:0 6px 28px rgba(201,168,76,0.35);
+}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,168,76,0.6)}
+.form-note{text-align:center;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* Divider déco */
+.divider-deco{
+  text-align:center;padding:24px;color:var(--border);font-size:20px;letter-spacing:8px;
+}
+
+/* FOOTER */
+footer{
+  background:var(--bg2);border-top:1px solid var(--border);
+  padding:60px;display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center;
+}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);font-weight:700}
+.footer-logo small{display:block;font-family:'Outfit',sans-serif;font-size:9px;letter-spacing:4px;color:var(--purple3);font-weight:300}
+.footer-copy{text-align:center;font-size:12px;color:var(--muted);line-height:1.8}
+.footer-links{display:flex;gap:20px;justify-content:flex-end;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:1px;transition:color 0.3s}
+.footer-links a:hover{color:var(--gold)}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:32px;right:32px;z-index:999;
+  background:linear-gradient(135deg,var(--bg3),var(--bg4));
+  border:1px solid var(--gold);border-radius:12px;padding:18px 28px;
+  font-size:14px;box-shadow:0 8px 40px rgba(0,0,0,0.5);
+  transform:translateY(80px);opacity:0;transition:all 0.4s;max-width:320px;
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast strong{color:var(--gold);display:block;margin-bottom:4px}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav{padding:18px 30px}
+  .section,.section-inner{padding-left:30px;padding-right:30px}
+  .resa-grid{grid-template-columns:1fr;gap:40px}
+  footer{grid-template-columns:1fr;text-align:center;padding:40px 30px}
+  .footer-links{justify-content:center}
+}
+@media(max-width:768px){
+  nav{padding:16px 20px}
+  nav.scrolled{padding:14px 20px}
+  .nav-links,.nav-cta{display:none}
+  .burger{display:flex}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .features-grid,.ba-grid,.pricing-grid,.loc-grid{grid-template-columns:1fr}
+  .pricing-extra-grid{grid-template-columns:1fr}
+  .form-2col{grid-template-columns:1fr}
+  .print-opts{grid-template-columns:repeat(3,1fr)}
+  .pay-opts{grid-template-columns:repeat(2,1fr)}
+  .section,.section-inner{padding-left:20px;padding-right:20px}
+  .form-box{padding:32px 22px}
+  .hero h1{font-size:42px}
+}
 </style>
 </head>
 <body>
 
-<header>
-  <h2>Photobooth IA Lunéville</h2>
-</header>
-
-<section class="hero">
-  <h1>Location de Photobooth avec IA</h1>
-  <p>Rendez vos événements inoubliables</p>
-</section>
-
-<section class="section">
-  <h2 style="text-align:center">Nos expériences</h2>
-  <div class="grid">
-    <div class="card"><h3>📷 Classique</h3><p>Photobooth traditionnel</p></div>
-    <div class="card"><h3>🤖 IA Costumes</h3><p>Déguisements automatiques</p></div>
-    <div class="card"><h3>🌄 IA Décor</h3><p>Fond personnalisé</p></div>
-    <div class="card"><h3>🧠 IA Groupe</h3><p>Fusion intelligente</p></div>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">TREMA<small>Multi-Services · Photobooth</small></a>
+  <ul class="nav-links">
+    <li><a href="#experiences">Services</a></li>
+    <li><a href="#avantapres">Avant/Après</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#locations">Locations</a></li>
+    <li><a href="#reservation">Réservation</a></li>
+  </ul>
+  <a href="#reservation" class="nav-cta">Réserver</a>
+  <div class="burger" onclick="toggleMenu()" id="burger">
+    <span></span><span></span><span></span>
   </div>
-</section>
+</nav>
 
-<section class="section">
-  <h2 style="text-align:center">Comparez les options</h2>
-  <div class="compare">
-    <div><h3>📷 Classique</h3><p>Sans IA</p></div>
-    <div><h3>🤖 Costumes</h3><p>Ajout vêtements</p></div>
-    <div><h3>🌄 Décor</h3><p>Changement fond</p></div>
-    <div><h3>🧠 Groupe</h3><p>Fusion photos</p></div>
-  </div>
-</section>
-
-<section class="section">
-<div class="reservation">
-<h2>Réservation</h2>
-
-<label>Date</label>
-<input type="date" id="date">
-
-<label>Ville ou adresse</label>
-<input type="text" id="adresse" placeholder="Ex: Nancy" oninput="calculDistance()">
-
-<div class="info" id="transportInfo"></div>
-
-<label>Options IA</label>
-<label><input type="checkbox" class="ia"> Costumes</label>
-<label><input type="checkbox" class="ia"> Décor</label>
-<label><input type="checkbox" class="ia"> Groupe</label>
-
-<label>Impressions</label>
-<select id="prints" onchange="calculTotal()">
-<option value="70">100 impressions (70€)</option>
-<option value="140">200 impressions (140€)</option>
-<option value="210">300 impressions (210€)</option>
-</select>
-
-<div class="total" id="total">Total : 250€</div>
-
-<button class="btn">Réserver</button>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#experiences" onclick="toggleMenu()">Services</a>
+  <a href="#avantapres" onclick="toggleMenu()">Avant / Après</a>
+  <a href="#tarifs" onclick="toggleMenu()">Tarifs</a>
+  <a href="#locations" onclick="toggleMenu()">Locations</a>
+  <a href="#reservation" onclick="toggleMenu()">Réservation</a>
 </div>
-</section>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <span class="hero-tag">✦ Photobooth IA Premium · Région Grand Est</span>
+  <h1>Immortalisez<br>chaque <em>moment</em></h1>
+  <p>Photobooth augmenté par l'intelligence artificielle. Des souvenirs inoubliables pour vos mariages, fêtes et événements d'entreprise.</p>
+  <div class="hero-btns">
+    <a href="#reservation" class="btn-gold">Réserver mon événement</a>
+    <a href="#avantapres" class="btn-outline">Voir les résultats</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Découvrir
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-band reveal">
+  <div class="stats-grid">
+    <div><div class="stat-num">500+</div><div class="stat-label">Événements réalisés</div></div>
+    <div><div class="stat-num">5 sec</div><div class="stat-label">Transformation IA</div></div>
+    <div><div class="stat-num">8</div><div class="stat-label">Personnes par photo max</div></div>
+    <div><div class="stat-num">100%</div><div class="stat-label">Clients satisfaits</div></div>
+  </div>
+</div>
+
+<!-- EXPÉRIENCES / SERVICES -->
+<div class="section-wrap features-bg" id="experiences">
+  <div class="section-inner">
+    <span class="label reveal">Nos technologies</span>
+    <h2 class="title reveal">Trois façons de<br><em>sublimer vos photos</em></h2>
+    <div class="features-grid" style="margin-top:64px">
+      <div class="feature-card reveal">
+        <div class="f-num">01</div>
+        <span class="f-icon">🤖</span>
+        <h3>IA Générative</h3>
+        <p>Créez des images ultra-réalistes en 5 secondes. Capturez jusqu'à 8 personnes tout en préservant leur identité. Costumes, univers fantastiques, super-héros… sans limite.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="f-num">02</div>
+        <span class="f-icon">🌄</span>
+        <h3>IA Détourage</h3>
+        <p>Dites adieu au fond vert ! Notre IA de détourage produit des photos professionnelles parfaites à chaque prise, sans complexité technique, avec n'importe quel décor.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="f-num">03</div>
+        <span class="f-icon">🎭</span>
+        <h3>Friz Generator</h3>
+        <p>Technologie unique qui rassemble vos invités sur un support photo et vidéo inédit. Des souvenirs collectifs mémorables, automatiquement composés.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AVANT / APRÈS -->
+<div class="section-wrap ba-wrap" id="avantapres">
+  <div class="section-inner">
+    <span class="label reveal">Avant / Après</span>
+    <h2 class="title reveal">Glissez pour voir<br><em>la magie opérer</em></h2>
+    <p class="subtitle reveal">Faites glisser le curseur sur chaque photo pour comparer l'original et le résultat IA.</p>
+    <div class="ba-grid">
+      <div class="reveal">
+        <div class="ba-card" data-card="1">
+          <img class="ba-after" src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80" alt="IA Générative After">
+          <div class="ba-before-overlay" id="overlay1">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80" alt="Before">
+          </div>
+          <div class="ba-divider" id="divider1"></div>
+          <div class="ba-labels"><span class="ba-label before">Avant</span><span class="ba-label after">IA Générative</span></div>
+        </div>
+        <p class="ba-caption">Couple → Univers Cyberpunk</p>
+      </div>
+      <div class="reveal">
+        <div class="ba-card" data-card="2">
+          <img class="ba-after" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="After">
+          <div class="ba-before-overlay" id="overlay2">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80" alt="Before">
+          </div>
+          <div class="ba-divider" id="divider2"></div>
+          <div class="ba-labels"><span class="ba-label before">Avant</span><span class="ba-label after">IA Détourage</span></div>
+        </div>
+        <p class="ba-caption">Fond quelconque → Décor pro</p>
+      </div>
+      <div class="reveal">
+        <div class="ba-card" data-card="3">
+          <img class="ba-after" src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80" alt="After">
+          <div class="ba-before-overlay" id="overlay3">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80" alt="Before">
+          </div>
+          <div class="ba-divider" id="divider3"></div>
+          <div class="ba-labels"><span class="ba-label before">Avant</span><span class="ba-label after">Friz Generator</span></div>
+        </div>
+        <p class="ba-caption">Groupe → Fusion épique</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TARIFS -->
+<div class="section-wrap pricing-wrap" id="tarifs">
+  <div class="section-inner">
+    <span class="label reveal">Tarifs transparents</span>
+    <h2 class="title reveal">Choisissez votre<br><em>formule</em></h2>
+    <p class="subtitle reveal">Location 4h · Galerie numérique HD incluse · Livraison offerte jusqu'à 15 km</p>
+
+    <div class="pricing-grid">
+      <!-- ESSENTIEL -->
+      <div class="pricing-card reveal">
+        <div class="pricing-name">Essentiel</div>
+        <p style="color:var(--muted);font-size:13px;margin-top:6px">Photobooth classique</p>
+        <div class="pricing-price"><sup>€</sup>180</div>
+        <p class="pricing-sub">Sans impression · Location 4h</p>
+        <ul class="pricing-list">
+          <li class="yes">Photobooth haute qualité</li>
+          <li class="yes">Galerie numérique HD</li>
+          <li class="yes">Sans impression physique</li>
+          <li class="no">Options IA non incluses</li>
+        </ul>
+        <a href="#reservation" class="btn-outline" style="display:block;text-align:center;font-size:12px;padding:13px 20px">Réserver</a>
+      </div>
+
+      <!-- PREMIUM IA -->
+      <div class="pricing-card featured reveal">
+        <div class="pricing-badge">Le plus populaire</div>
+        <div class="pricing-name">Premium IA</div>
+        <p style="color:var(--muted);font-size:13px;margin-top:6px">Photobooth + 2 options IA</p>
+        <div class="pricing-price"><sup>€</sup>340</div>
+        <p class="pricing-sub">100 impressions · Location 4h</p>
+        <ul class="pricing-list">
+          <li class="yes">Photobooth haute qualité</li>
+          <li class="yes">IA Générative</li>
+          <li class="yes">IA Détourage</li>
+          <li class="yes">100 impressions incluses</li>
+          <li class="yes">Galerie numérique HD</li>
+        </ul>
+        <a href="#reservation" class="btn-gold" style="display:block;text-align:center;font-size:12px;padding:13px 20px;border-radius:100px">Réserver</a>
+      </div>
+
+      <!-- ULTIME -->
+      <div class="pricing-card reveal">
+        <div class="pricing-name">Ultime</div>
+        <p style="color:var(--muted);font-size:13px;margin-top:6px">Expérience complète</p>
+        <div class="pricing-price"><sup>€</sup>360</div>
+        <p class="pricing-sub">100 impressions · Location 4h</p>
+        <ul class="pricing-list">
+          <li class="yes">Photobooth haute qualité</li>
+          <li class="yes">IA Générative + Détourage</li>
+          <li class="yes">Friz Generator</li>
+          <li class="yes">100 impressions incluses</li>
+          <li class="yes">Galerie numérique HD</li>
+        </ul>
+        <a href="#reservation" class="btn-outline" style="display:block;text-align:center;font-size:12px;padding:13px 20px">Réserver</a>
+      </div>
+    </div>
+
+    <div class="pricing-extra-grid" style="margin-top:28px">
+      <div class="pricing-card reveal" style="padding:32px 28px">
+        <div style="display:flex;justify-content:space-between;align-items:start">
+          <div>
+            <div class="pricing-name" style="font-size:22px">Impressions supplémentaires</div>
+            <p style="color:var(--muted);font-size:13px;margin-top:6px">À ajouter à votre formule</p>
+          </div>
+          <span style="font-size:28px">🖨️</span>
+        </div>
+        <ul class="pricing-list" style="margin-top:20px;margin-bottom:0">
+          <li class="yes">100 impressions — <span style="color:var(--gold)">180 € TTC</span></li>
+          <li class="yes">200 impressions — <span style="color:var(--gold)">210 € TTC</span></li>
+          <li class="yes">300 à 700 impressions — <span style="color:var(--gold)">330 € TTC</span></li>
+          <li class="yes">Sans impression — <span style="color:var(--gold)">180 € TTC</span></li>
+        </ul>
+      </div>
+      <div class="pricing-card reveal" style="padding:32px 28px">
+        <div style="display:flex;justify-content:space-between;align-items:start">
+          <div>
+            <div class="pricing-name" style="font-size:22px">Options IA à la carte</div>
+            <p style="color:var(--muted);font-size:13px;margin-top:6px">Personnalisez votre expérience</p>
+          </div>
+          <span style="font-size:28px">✨</span>
+        </div>
+        <ul class="pricing-list" style="margin-top:20px;margin-bottom:0">
+          <li class="yes">1 option IA — <span style="color:var(--gold)">+60 €</span></li>
+          <li class="yes">2 options IA — <span style="color:var(--gold)">+90 €</span></li>
+          <li class="yes">3 options IA (pack complet) — <span style="color:var(--gold)">+110 €</span></li>
+          <li class="yes">Transport +15 km — <span style="color:var(--gold)">0,50 €/km</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="pricing-note reveal">
+      <span>✦</span> Acompte de 50% à la réservation · Solde le jour J ·
+      <span>Livraison offerte dans un rayon de 15 km</span><br>
+      Paiement par virement, PayPal, Lydia/Sumeria ou espèces
+    </p>
+  </div>
+</div>
+
+<!-- LOCATIONS SUPPLÉMENTAIRES -->
+<div class="section-wrap loc-wrap" id="locations">
+  <div class="section-inner">
+    <span class="label reveal">Locations supplémentaires</span>
+    <h2 class="title reveal">Complétez votre<br><em>événement</em></h2>
+    <p class="subtitle reveal">Sélectionnez les équipements que vous souhaitez ajouter à votre réservation. Cliquez pour cocher.</p>
+
+    <div class="loc-grid" id="locGrid">
+
+      <!-- Vidéo Projecteurs -->
+      <div class="loc-card" data-price="80" data-name="Vidéo Projecteurs" onclick="toggleLoc(this)">
+        <div class="loc-check"></div>
+        <span class="loc-icon">📽️</span>
+        <div class="loc-name">Vidéo Projecteurs</div>
+        <div class="loc-desc">Projection vidéo HD pour ambiance cinéma ou présentation.</div>
+        <div class="loc-price">80 € TTC</div>
+      </div>
+
+      <!-- Écran intérieur -->
+      <div class="loc-card" data-price="30" data-name="Écran Intérieur HD 4K" onclick="toggleLoc(this)">
+        <div class="loc-check"></div>
+        <span class="loc-icon">🖥️</span>
+        <div class="loc-name">Écran Intérieur HD 4K</div>
+        <div class="loc-desc">Écran 120 pouces (2,75m × 1,47m) · Projection avant/arrière · 16:9</div>
+        <div class="loc-price">30 € TTC</div>
+      </div>
+
+      <!-- Écran extérieur -->
+      <div class="loc-card" data-price="60" data-name="Écran Extérieur Gonflable" onclick="toggleLoc(this)">
+        <div class="loc-check"></div>
+        <span class="loc-icon">🎪</span>
+        <div class="loc-name">Écran Extérieur Gonflable</div>
+        <div class="loc-desc">4,05m × 3,08m · Diagonale 4,87m · Projection avant/arrière · Extérieur</div>
+        <div class="loc-price">60 € TTC</div>
+      </div>
+
+      <!-- Jets de scène -->
+      <div class="loc-card" data-price="30" data-name="Jets de Scène" data-extra="25" data-qty="2" onclick="toggleLoc(this)" id="jetsCard">
+        <div class="loc-check"></div>
+        <span class="loc-icon">✨</span>
+        <div class="loc-name">Jets de Scène Étincelles</div>
+        <div class="loc-desc">2 jets froids · 2 mètres de hauteur · 30 sec. Jets supplémentaires +25€/unité.</div>
+        <div class="loc-price" id="jetsPrice">30 € TTC (2 jets inclus)</div>
+        <div class="loc-qty" id="jetsQty" style="display:none" onclick="event.stopPropagation()">
+          <span style="font-size:12px;color:var(--muted)">Jets suppl. :</span>
+          <button class="loc-qty-btn" onclick="changeJets(-1)">−</button>
+          <span class="loc-qty-num" id="jetsNum">0</span>
+          <button class="loc-qty-btn" onclick="changeJets(1)">+</button>
+          <span style="font-size:12px;color:var(--gold)" id="jetsCost"></span>
+        </div>
+      </div>
+
+      <!-- Tables hautes -->
+      <div class="loc-card" data-price="0" data-name="Tables Hautes" onclick="toggleLoc(this)" id="tablesCard">
+        <div class="loc-check"></div>
+        <span class="loc-icon">🪑</span>
+        <div class="loc-name">Tables Hautes Noires</div>
+        <div class="loc-desc">Tables hautes avec hausses noires, idéales pour cocktails et soirées. 9 €/pièce.</div>
+        <div class="loc-price" id="tablesPrice">9 € / pièce</div>
+        <div class="loc-qty" id="tablesQty" style="display:none" onclick="event.stopPropagation()">
+          <span style="font-size:12px;color:var(--muted)">Quantité :</span>
+          <button class="loc-qty-btn" onclick="changeTables(-1)">−</button>
+          <span class="loc-qty-num" id="tablesNum">1</span>
+          <button class="loc-qty-btn" onclick="changeTables(1)">+</button>
+          <span style="font-size:12px;color:var(--gold)" id="tablesCost">9 €</span>
+        </div>
+      </div>
+
+      <!-- Bonbonnes -->
+      <div class="loc-card" data-price="0" data-name="Bonbonnes Boisson" onclick="toggleLoc(this)" id="bonbCard">
+        <div class="loc-check"></div>
+        <span class="loc-icon">🫙</span>
+        <div class="loc-name">Bonbonnes Verre Boisson</div>
+        <div class="loc-desc">Bonbonnes en verre 5 litres pour boissons. Élégantes et pratiques. 5 €/bonbonne.</div>
+        <div class="loc-price" id="bonbPrice">5 € / bonbonne</div>
+        <div class="loc-qty" id="bonbQty" style="display:none" onclick="event.stopPropagation()">
+          <span style="font-size:12px;color:var(--muted)">Quantité :</span>
+          <button class="loc-qty-btn" onclick="changeBonb(-1)">−</button>
+          <span class="loc-qty-num" id="bonbNum">1</span>
+          <button class="loc-qty-btn" onclick="changeBonb(1)">+</button>
+          <span style="font-size:12px;color:var(--gold)" id="bonbCost">5 €</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Récap locations -->
+    <div id="locRecap" style="display:none;margin-top:36px">
+      <div class="form-total">
+        <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--purple3);margin-bottom:16px">Récapitulatif locations sélectionnées</div>
+        <div id="locRecapLines"></div>
+        <div class="total-line main"><span>Total locations</span><span id="locTotal">0 €</span></div>
+      </div>
+      <div style="text-align:center;margin-top:20px">
+        <a href="#reservation" class="btn-gold" style="display:inline-block">Ajouter à ma réservation →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RÉSERVATION -->
+<div class="section-wrap resa-wrap" id="reservation">
+  <div class="section-inner">
+    <span class="label reveal">Réservation</span>
+    <h2 class="title reveal">Planifiez votre<br><em>événement</em></h2>
+    <div class="resa-grid">
+
+      <div class="resa-info reveal">
+        <h3>Comment ça marche ?</h3>
+        <p>Remplissez le formulaire avec les détails de votre événement. Nous vous confirmons la disponibilité sous 24h et vous envoyons un devis détaillé.</p>
+        <p>Un <strong style="color:var(--gold)">acompte de 50%</strong> est demandé pour valider définitivement votre réservation. Le solde est réglé le jour de l'événement.</p>
+        <div class="resa-block">
+          <strong>📍 Zone de livraison</strong>
+          <p>Livraison offerte dans un rayon de 15 km. Au-delà, forfait kilométrique de 0,50€/km.</p>
+        </div>
+        <div class="resa-block" style="margin-top:14px;border-left-color:var(--purple2)">
+          <strong style="color:var(--purple3)">💳 Moyens de paiement</strong>
+          <p>Virement bancaire, PayPal, Lydia/Sumeria ou espèces. L'acompte sécurise votre date.</p>
+        </div>
+        <div class="resa-block" style="margin-top:14px;border-left-color:var(--purple2)">
+          <strong style="color:var(--purple3)">⏱ Confirmation</strong>
+          <p>Réponse sous 24h. Aucun engagement avant validation de votre devis.</p>
+        </div>
+      </div>
+
+      <div class="form-box reveal">
+        <!-- Nom / Prénom -->
+        <div class="form-2col">
+          <div class="form-row">
+            <label>Prénom</label>
+            <input type="text" id="prenom" placeholder="Marie">
+          </div>
+          <div class="form-row">
+            <label>Nom</label>
+            <input type="text" id="nom" placeholder="Dupont">
+          </div>
+        </div>
+        <!-- Email / Tél -->
+        <div class="form-2col">
+          <div class="form-row">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="marie@email.com">
+          </div>
+          <div class="form-row">
+            <label>Téléphone</label>
+            <input type="tel" id="tel" placeholder="06 xx xx xx xx">
+          </div>
+        </div>
+        <!-- Date / Type -->
+        <div class="form-2col">
+          <div class="form-row">
+            <label>Date de l'événement</label>
+            <input type="date" id="date">
+          </div>
+          <div class="form-row">
+            <label>Type d'événement</label>
+            <div class="form-select-wrap">
+              <select id="type-event">
+                <option value="">Sélectionner...</option>
+                <option>Mariage</option>
+                <option>Anniversaire</option>
+                <option>Soirée d'entreprise</option>
+                <option>Baptême / Communion</option>
+                <option>Autre</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- Adresse -->
+        <div class="form-row">
+          <label>Ville ou adresse de l'événement</label>
+          <input type="text" id="adresse" placeholder="Ex : Nancy, 54000" oninput="calculDistance()">
+          <div class="transport-info" id="transportInfo"></div>
+        </div>
+        <!-- Options IA -->
+        <div class="form-row">
+          <label>Options IA souhaitées</label>
+          <div class="ia-options">
+            <label class="ia-opt" onclick="toggleIA(this)">
+              <input type="checkbox" class="ia" value="60">
+              <div class="ia-chk"></div>
+              <div class="ia-info"><div class="ia-name">🤖 IA Générative</div><div class="ia-desc">Costumes & univers fantastiques en 5 sec</div></div>
+              <div class="ia-pr">+60 €</div>
+            </label>
+            <label class="ia-opt" onclick="toggleIA(this)">
+              <input type="checkbox" class="ia" value="60">
+              <div class="ia-chk"></div>
+              <div class="ia-info"><div class="ia-name">🌄 IA Détourage</div><div class="ia-desc">Changement de décor sans fond vert</div></div>
+              <div class="ia-pr">+60 €</div>
+            </label>
+            <label class="ia-opt" onclick="toggleIA(this)">
+              <input type="checkbox" class="ia" value="60">
+              <div class="ia-chk"></div>
+              <div class="ia-info"><div class="ia-name">🎭 Friz Generator</div><div class="ia-desc">Fusion groupe unique & mémorable</div></div>
+              <div class="ia-pr">+60 €</div>
+            </label>
+          </div>
+        </div>
+        <!-- Impressions -->
+        <div class="form-row">
+          <label>Nombre d'impressions</label>
+          <div class="print-opts" id="printOpts">
+            <div class="print-opt active" data-val="180" onclick="selectPrint(this)"><div class="pn">0</div><div class="pp">Sans<br>180 €</div></div>
+            <div class="print-opt" data-val="180" onclick="selectPrint(this)"><div class="pn">100</div><div class="pp">180 € TTC</div></div>
+            <div class="print-opt" data-val="210" onclick="selectPrint(this)"><div class="pn">200</div><div class="pp">210 € TTC</div></div>
+            <div class="print-opt" data-val="330" onclick="selectPrint(this)"><div class="pn">300+</div><div class="pp">330 € TTC</div></div>
+          </div>
+        </div>
+        <!-- Locations supp rappel -->
+        <div class="form-row" id="locFormBlock" style="display:none">
+          <label>Locations supplémentaires sélectionnées</label>
+          <div style="background:var(--bg);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--muted)" id="locFormSummary"></div>
+        </div>
+        <!-- Paiement acompte -->
+        <div class="form-row">
+          <label>Moyen de paiement de l'acompte</label>
+          <div class="pay-opts">
+            <div class="pay-opt active" onclick="selectPay(this)"><span class="pi">🏦</span>Virement</div>
+            <div class="pay-opt" onclick="selectPay(this)"><span class="pi">🅿️</span>PayPal</div>
+            <div class="pay-opt" onclick="selectPay(this)"><span class="pi">📱</span>Lydia</div>
+            <div class="pay-opt" onclick="selectPay(this)"><span class="pi">💵</span>Espèces</div>
+          </div>
+        </div>
+        <!-- Message -->
+        <div class="form-row">
+          <label>Message (optionnel)</label>
+          <textarea id="message" placeholder="Thème, nombre d'invités, questions spécifiques..."></textarea>
+        </div>
+        <!-- Total -->
+        <div class="form-total" id="formTotal">
+          <div class="total-line"><span>Location photobooth (4h)</span><span>Inclus</span></div>
+          <div class="total-line" id="tl-prints"><span>Impressions</span><span id="tl-prints-val">180 €</span></div>
+          <div class="total-line" id="tl-ia" style="display:none"><span>Options IA</span><span id="tl-ia-val">0 €</span></div>
+          <div class="total-line" id="tl-transport" style="display:none"><span>Transport</span><span id="tl-transport-val">0 €</span></div>
+          <div class="total-line" id="tl-loc" style="display:none"><span>Locations supp.</span><span id="tl-loc-val">0 €</span></div>
+          <div class="total-line main"><span>Total estimé TTC</span><span id="total-price">180 €</span></div>
+          <div class="total-acompte" id="total-acompte">Acompte à la réservation : <strong style="color:var(--gold)">90 €</strong></div>
+        </div>
+        <button class="btn-submit" onclick="submitForm()">Envoyer ma demande de réservation →</button>
+        <p class="form-note">Confirmation sous 24h · Aucun engagement avant validation</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">TREMA<small>Multi-Services · Photobooth</small></div>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px">Région Grand Est · France</p>
+  </div>
+  <div class="footer-copy">© 2025 Trema Multi-Services<br>Location de photobooth avec IA<br><span style="color:var(--purple3)">Fabriqué avec ✦</span></div>
+  <div class="footer-links">
+    <a href="#">Mentions légales</a>
+    <a href="#">CGV</a>
+    <a href="#reservation">Contact</a>
+    <a href="#tarifs">Tarifs</a>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <strong id="toastTitle">✓ Message envoyé !</strong>
+  <span id="toastMsg">Nous vous répondons sous 24h.</span>
+</div>
 
 <script>
-let transportCost = 0;
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
 
+// ── BURGER MENU ──
+function toggleMenu() {
+  const m = document.getElementById('mobileMenu');
+  const b = document.getElementById('burger');
+  m.classList.toggle('open');
+  b.style.opacity = m.classList.contains('open') ? '0' : '1';
+}
+
+// ── BEFORE/AFTER SLIDERS ──
+function initSlider(n) {
+  const card = document.querySelector(`[data-card="${n}"]`);
+  const overlay = document.getElementById(`overlay${n}`);
+  const divider = document.getElementById(`divider${n}`);
+  let dragging = false;
+  function setPos(x) {
+    const r = card.getBoundingClientRect();
+    let pct = Math.min(Math.max((x - r.left) / r.width * 100, 0), 100);
+    overlay.style.width = pct + '%';
+    divider.style.left = pct + '%';
+    overlay.querySelector('img').style.width = (pct > 0 ? (100 / (pct / 100)) : 200) + '%';
+  }
+  card.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); });
+  card.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, {passive:true});
+  window.addEventListener('mousemove', e => { if(dragging) setPos(e.clientX); });
+  window.addEventListener('touchmove', e => { if(dragging) setPos(e.touches[0].clientX); }, {passive:true});
+  window.addEventListener('mouseup', () => dragging = false);
+  window.addEventListener('touchend', () => dragging = false);
+}
+[1,2,3].forEach(initSlider);
+
+// ── IA OPTIONS ──
+function toggleIA(label) {
+  const cb = label.querySelector('input');
+  cb.checked = !cb.checked;
+  label.classList.toggle('active', cb.checked);
+  calculTotal();
+}
+
+// ── PRINT SELECT ──
+let printVal = 180;
+function selectPrint(el) {
+  document.querySelectorAll('.print-opt').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  printVal = parseInt(el.dataset.val);
+  calculTotal();
+}
+
+// ── PAYMENT ──
+function selectPay(el) {
+  document.querySelectorAll('.pay-opt').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── LOCATIONS ──
+let jetsExtra = 0, jetsCount = 0;
+let tablesCount = 1, bonbCount = 1;
+
+function toggleLoc(card) {
+  card.classList.toggle('selected');
+  const id = card.id;
+  if (id === 'jetsCard') {
+    const qtyEl = document.getElementById('jetsQty');
+    qtyEl.style.display = card.classList.contains('selected') ? 'flex' : 'none';
+    if (!card.classList.contains('selected')) { jetsCount = 0; updateJets(); }
+  }
+  if (id === 'tablesCard') {
+    const qtyEl = document.getElementById('tablesQty');
+    qtyEl.style.display = card.classList.contains('selected') ? 'flex' : 'none';
+  }
+  if (id === 'bonbCard') {
+    const qtyEl = document.getElementById('bonbQty');
+    qtyEl.style.display = card.classList.contains('selected') ? 'flex' : 'none';
+  }
+  updateLocRecap();
+  calculTotal();
+}
+
+function changeJets(d) {
+  jetsCount = Math.max(0, jetsCount + d);
+  updateJets();
+  updateLocRecap();
+  calculTotal();
+}
+function updateJets() {
+  jetsExtra = jetsCount * 25;
+  document.getElementById('jetsNum').textContent = jetsCount;
+  document.getElementById('jetsCost').textContent = jetsExtra > 0 ? `+${jetsExtra} €` : '';
+  document.getElementById('jetsPrice').textContent = `30 € + ${jetsExtra} € jets suppl.`;
+}
+function changeTables(d) {
+  tablesCount = Math.max(1, tablesCount + d);
+  document.getElementById('tablesNum').textContent = tablesCount;
+  document.getElementById('tablesCost').textContent = (tablesCount * 9) + ' €';
+  document.getElementById('tablesPrice').textContent = `${tablesCount * 9} € TTC (${tablesCount} table${tablesCount>1?'s':''})`;
+  updateLocRecap(); calculTotal();
+}
+function changeBonb(d) {
+  bonbCount = Math.max(1, bonbCount + d);
+  document.getElementById('bonbNum').textContent = bonbCount;
+  document.getElementById('bonbCost').textContent = (bonbCount * 5) + ' €';
+  document.getElementById('bonbPrice').textContent = `${bonbCount * 5} € TTC (${bonbCount} bonbonne${bonbCount>1?'s':''})`;
+  updateLocRecap(); calculTotal();
+}
+
+function getLocTotal() {
+  let total = 0;
+  document.querySelectorAll('.loc-card.selected').forEach(card => {
+    const id = card.id;
+    if (id === 'tablesCard') total += tablesCount * 9;
+    else if (id === 'bonbCard') total += bonbCount * 5;
+    else if (id === 'jetsCard') total += 30 + jetsExtra;
+    else total += parseInt(card.dataset.price) || 0;
+  });
+  return total;
+}
+
+function updateLocRecap() {
+  const selected = document.querySelectorAll('.loc-card.selected');
+  const recap = document.getElementById('locRecap');
+  const lines = document.getElementById('locRecapLines');
+  const formBlock = document.getElementById('locFormBlock');
+  const formSummary = document.getElementById('locFormSummary');
+
+  if (selected.length === 0) {
+    recap.style.display = 'none';
+    formBlock.style.display = 'none';
+    return;
+  }
+  recap.style.display = 'block';
+  formBlock.style.display = 'block';
+
+  let html = '', sumHtml = '';
+  selected.forEach(card => {
+    const name = card.dataset.name;
+    const id = card.id;
+    let price = 0;
+    if (id === 'tablesCard') price = tablesCount * 9;
+    else if (id === 'bonbCard') price = bonbCount * 5;
+    else if (id === 'jetsCard') price = 30 + jetsExtra;
+    else price = parseInt(card.dataset.price) || 0;
+    html += `<div class="total-line"><span>${name}</span><span style="color:var(--gold)">${price} €</span></div>`;
+    sumHtml += `✦ ${name} — ${price} €  `;
+  });
+
+  lines.innerHTML = html;
+  document.getElementById('locTotal').textContent = getLocTotal() + ' €';
+  formSummary.textContent = sumHtml || 'Aucune';
+}
+
+// ── DISTANCE ──
+let transportCost = 0;
 async function calculDistance() {
   const adresse = document.getElementById('adresse').value;
-  if (!adresse) return;
-
+  if (!adresse || adresse.length < 3) { transportCost = 0; calculTotal(); return; }
   try {
-    const res = await fetch(`https://photon.komoot.io/api/?q=${adresse}`);
+    const res = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(adresse)}&limit=1`);
     const data = await res.json();
-
-    if (!data.features || !data.features[0]) {
-      document.getElementById('transportInfo').innerText = "";
-      return;
-    }
-
-    const lat = data.features[0].geometry.coordinates[1];
-    const lon = data.features[0].geometry.coordinates[0];
-
-    const latL = 48.5929;
-    const lonL = 6.4967;
-
-    const R = 6371;
+    if (!data.features?.[0]) { document.getElementById('transportInfo').innerText = ''; return; }
+    const [lon, lat] = data.features[0].geometry.coordinates;
+    const latL = 48.5929, lonL = 6.4967, R = 6371;
     const dLat = (lat - latL) * Math.PI / 180;
     const dLon = (lon - lonL) * Math.PI / 180;
-
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(latL * Math.PI / 180) *
-      Math.cos(lat * Math.PI / 180) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
-
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    let distance = R * c;
-
-    // 🔥 correction intelligente
-    if (distance < 10) distance *= 1.2;
-    else if (distance < 30) distance *= 1.3;
-    else distance *= 1.4;
-
-    if (distance <= 15) {
+    const a = Math.sin(dLat/2)**2 + Math.cos(latL*Math.PI/180)*Math.cos(lat*Math.PI/180)*Math.sin(dLon/2)**2;
+    let dist = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    if (dist < 10) dist *= 1.2; else if (dist < 30) dist *= 1.3; else dist *= 1.4;
+    if (dist <= 15) {
       transportCost = 0;
-      document.getElementById('transportInfo').innerText =
-        `Distance : ${distance.toFixed(1)} km → Transport OFFERT`;
+      document.getElementById('transportInfo').innerText = `📍 ${dist.toFixed(1)} km — Transport offert ✓`;
     } else {
-
-      const kmPayant = distance - 15;
-
-      let prixMin = Math.ceil((kmPayant * 0.5) * 2) / 2;
-
-      // 🔥 fourchette propre (progressive)
-      let prixMax = prixMin + (Math.ceil(kmPayant / 10) * 1);
-
-      transportCost = prixMin;
-
-      document.getElementById('transportInfo').innerText =
-        `Distance : ${distance.toFixed(1)} km → Transport : ${prixMin.toFixed(2)}€ à ${prixMax.toFixed(2)}€`;
+      const km = dist - 15;
+      transportCost = Math.ceil(km * 0.5 * 2) / 2;
+      document.getElementById('transportInfo').innerText = `📍 ${dist.toFixed(1)} km — Transport estimé : ${transportCost.toFixed(2)} €`;
     }
-
     calculTotal();
-
-  } catch (e) {
-    document.getElementById('transportInfo').innerText = "";
-  }
+  } catch(e) { document.getElementById('transportInfo').innerText = ''; }
 }
 
+// ── TOTAL ──
 function calculTotal() {
-  let total = 250;
-  const iaCount = document.querySelectorAll('.ia:checked').length;
+  const cbs = [...document.querySelectorAll('.ia')];
+  const iaCount = cbs.filter(c => c.checked).length;
+  let iaExtra = iaCount === 1 ? 60 : iaCount === 2 ? 90 : iaCount >= 3 ? 110 : 0;
+  const locT = getLocTotal();
+  const total = printVal + iaExtra + transportCost + locT;
+  const acompte = Math.round(total * 0.5 * 100) / 100;
 
-  if (iaCount === 1) total += 60;
-  if (iaCount === 2) total += 90;
-  if (iaCount >= 3) total += 110;
+  document.getElementById('total-price').innerText = total.toFixed(2) + ' €';
+  document.getElementById('total-acompte').innerHTML = `Acompte à la réservation (50%) : <strong style="color:var(--gold)">${acompte.toFixed(2)} €</strong>`;
+  document.getElementById('tl-prints-val').innerText = printVal + ' €';
 
-  total += parseInt(document.getElementById('prints').value);
-  total += transportCost;
+  const tlIA = document.getElementById('tl-ia');
+  if (iaExtra > 0) { tlIA.style.display = 'flex'; document.getElementById('tl-ia-val').innerText = iaExtra + ' €'; }
+  else tlIA.style.display = 'none';
 
-  document.getElementById('total').innerText = "Total : " + total.toFixed(2) + "€";
+  const tlT = document.getElementById('tl-transport');
+  if (transportCost > 0) { tlT.style.display = 'flex'; document.getElementById('tl-transport-val').innerText = transportCost.toFixed(2) + ' €'; }
+  else tlT.style.display = 'none';
+
+  const tlL = document.getElementById('tl-loc');
+  if (locT > 0) { tlL.style.display = 'flex'; document.getElementById('tl-loc-val').innerText = locT + ' €'; }
+  else tlL.style.display = 'none';
+}
+calculTotal();
+
+// ── SUBMIT ──
+function submitForm() {
+  const prenom = document.getElementById('prenom').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!prenom || !email) {
+    showToast('Champs manquants', 'Merci de renseigner votre prénom et email.', true);
+    return;
+  }
+  showToast(`Merci ${prenom} ! ✓`, `Votre demande a été envoyée. Réponse sous 24h à ${email}.`);
 }
 
-document.querySelectorAll('.ia').forEach(el => el.addEventListener('change', calculTotal));
-</script>
+function showToast(title, msg, error = false) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastMsg').textContent = msg;
+  t.style.borderColor = error ? '#e55' : 'var(--gold)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4500);
+}
 
+// ── REVEAL ON SCROLL ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+</script>
 </body>
 </html>
