@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photobooth IA Lunéville</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+body { font-family:'Poppins', sans-serif; margin:0; background:#0f172a; color:white; }
+header { display:flex; justify-content:space-between; padding:20px 40px; }
+.hero { text-align:center; padding:100px 20px; }
+.hero h1 { font-size:48px; }
+.section { padding:60px 20px; max-width:1100px; margin:auto; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:25px; }
+.card { background:#1e293b; padding:25px; border-radius:16px; transition:0.3s; }
+.card:hover { transform:translateY(-8px); background:#334155; }
+.compare { display:flex; overflow-x:auto; gap:20px; padding:20px; }
+.compare div { min-width:250px; background:#1e293b; padding:20px; border-radius:12px; text-align:center; }
+.reservation { background:#1e293b; padding:30px; border-radius:16px; max-width:600px; margin:auto; }
+input, select { width:100%; padding:12px; margin:10px 0; border-radius:8px; border:none; }
+.total { font-size:22px; font-weight:600; margin-top:10px; }
+.info { font-size:14px; color:#cbd5f5; }
+.btn { background:#ff4d6d; padding:15px; border:none; width:100%; border-radius:10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h2>Photobooth IA Lunéville</h2>
+</header>
+
+<section class="hero">
+  <h1>Location de Photobooth avec IA</h1>
+  <p>Rendez vos événements inoubliables</p>
+</section>
+
+<section class="section">
+  <h2 style="text-align:center">Nos expériences</h2>
+  <div class="grid">
+    <div class="card"><h3>📷 Classique</h3><p>Photobooth traditionnel</p></div>
+    <div class="card"><h3>🤖 IA Costumes</h3><p>Déguisements automatiques</p></div>
+    <div class="card"><h3>🌄 IA Décor</h3><p>Fond personnalisé</p></div>
+    <div class="card"><h3>🧠 IA Groupe</h3><p>Fusion intelligente</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 style="text-align:center">Comparez les options</h2>
+  <div class="compare">
+    <div><h3>📷 Classique</h3><p>Sans IA</p></div>
+    <div><h3>🤖 Costumes</h3><p>Ajout vêtements</p></div>
+    <div><h3>🌄 Décor</h3><p>Changement fond</p></div>
+    <div><h3>🧠 Groupe</h3><p>Fusion photos</p></div>
+  </div>
+</section>
+
+<section class="section">
+<div class="reservation">
+<h2>Réservation</h2>
+
+<label>Date</label>
+<input type="date" id="date">
+
+<label>Ville ou adresse</label>
+<input type="text" id="adresse" placeholder="Ex: Nancy" oninput="calculDistance()">
+
+<div class="info" id="transportInfo">Transport : en attente...</div>
+
+<label>Options IA</label>
+<label><input type="checkbox" class="ia"> Costumes</label>
+<label><input type="checkbox" class="ia"> Décor</label>
+<label><input type="checkbox" class="ia"> Groupe</label>
+
+<label>Impressions</label>
+<select id="prints" onchange="calculTotal()">
+<option value="70">100 impressions (70€)</option>
+<option value="140">200 impressions (140€)</option>
+<option value="210">300 impressions (210€)</option>
+</select>
+
+<div class="total" id="total">Total : 250€</div>
+
+<button class="btn">Réserver</button>
+</div>
+</section>
+
+<script>
+let transportCost = 0;
+
+async function calculDistance() {
+  const adresse = document.getElementById('adresse').value;
+  if (!adresse) return;
+
+  try {
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${adresse}`);
+    const data = await res.json();
+
+    if (!data[0]) {
+      document.getElementById('transportInfo').innerText = "Adresse non trouvée";
+      return;
+    }
+
+    const lat = parseFloat(data[0].lat);
+    const lon = parseFloat(data[0].lon);
+
+    const latL = 48.5929;
+    const lonL = 6.4967;
+
+    // Calcul distance via API OpenRouteService (plus précis, route réelle)
+    const orsKey = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImUxMzViNGIwMTMzMjRkZTM4YzcyYjU5Mjk2YjEwN2UxIiwiaCI6Im11cm11cjY0In0=";
+
+    const orsRes = await fetch("https://api.openrouteservice.org/v2/directions/driving-car", {
+      method: "POST",
+      headers: {
+        "Authorization": orsKey,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        coordinates: [
+          [6.4967, 48.5929], // Lunéville
+          [lon, lat]
+        ]
+      })
+    });
+
+    const orsData = await orsRes.json();
+
+    if (!orsData.routes) {
+      document.getElementById('transportInfo').innerText = "Erreur API distance";
+      return;
+    }
+
+    const distance = orsData.routes[0].summary.distance / 1000;
+
+    if (distance <= 15) {
+      transportCost = 0;
+      document.getElementById('transportInfo').innerText = `Distance : ${distance.toFixed(1)} km → Transport OFFERT`;
+    } else {
+      transportCost = (distance - 15) * 0.5;
+      document.getElementById('transportInfo').innerText = `Distance : ${distance.toFixed(1)} km → Transport : ${transportCost.toFixed(2)}€`;
+    }
+
+    calculTotal();
+
+  } catch (e) {
+    document.getElementById('transportInfo').innerText = "Erreur de calcul";
+  }
+}
+
+function calculTotal() {
+  let total = 250;
+  const iaCount = document.querySelectorAll('.ia:checked').length;
+  if (iaCount === 1) total += 60;
+  if (iaCount === 2) total += 90;
+  if (iaCount >= 3) total += 110;
+
+  total += parseInt(document.getElementById('prints').value);
+  total += transportCost;
+
+  document.getElementById('total').innerText = "Total : " + total.toFixed(2) + "€";
+}
+
+document.querySelectorAll('.ia').forEach(el => el.addEventListener('change', calculTotal));
+</script>
+
+</body>
+</html>
