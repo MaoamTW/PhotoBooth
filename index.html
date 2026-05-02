@@ -92,20 +92,22 @@ async function calculDistance() {
   if (!adresse) return;
 
   try {
-    // 📍 Photon (géolocalisation)
-    const res = await fetch(`https://photon.komoot.io/api/?q=${adresse}`);
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${adresse}`);
     const data = await res.json();
 
-    if (!data.features || !data.features[0]) {
+    if (!data[0]) {
       document.getElementById('transportInfo').innerText = "Adresse non trouvée";
       return;
     }
 
-    const lat = data.features[0].geometry.coordinates[1];
-    const lon = data.features[0].geometry.coordinates[0];
+    const lat = parseFloat(data[0].lat);
+    const lon = parseFloat(data[0].lon);
 
-    // 🚗 OpenRouteService
-    const orsKey = "TA_CLE_ICI"; // 🔥 mets ta clé ici
+    const latL = 48.5929;
+    const lonL = 6.4967;
+
+    // Calcul distance via API OpenRouteService (plus précis, route réelle)
+    const orsKey = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImUxMzViNGIwMTMzMjRkZTM4YzcyYjU5Mjk2YjEwN2UxIiwiaCI6Im11cm11cjY0In0=";
 
     const orsRes = await fetch("https://api.openrouteservice.org/v2/directions/driving-car", {
       method: "POST",
@@ -115,7 +117,7 @@ async function calculDistance() {
       },
       body: JSON.stringify({
         coordinates: [
-          [6.4967, 48.5929],
+          [6.4967, 48.5929], // Lunéville
           [lon, lat]
         ]
       })
@@ -125,7 +127,6 @@ async function calculDistance() {
 
     if (!orsData.routes) {
       document.getElementById('transportInfo').innerText = "Erreur API distance";
-      console.log(orsData);
       return;
     }
 
@@ -133,29 +134,22 @@ async function calculDistance() {
 
     if (distance <= 15) {
       transportCost = 0;
-      document.getElementById('transportInfo').innerText =
-        `Distance : ${distance.toFixed(1)} km → Transport OFFERT`;
+      document.getElementById('transportInfo').innerText = `Distance : ${distance.toFixed(1)} km → Transport OFFERT`;
     } else {
-      // 🔥 ARRONDI AU 0,50€
-      transportCost = Math.ceil(((distance - 15) * 0.5) * 2) / 2;
-
-      document.getElementById('transportInfo').innerText =
-        `Distance : ${distance.toFixed(1)} km → Transport : ${transportCost.toFixed(2)}€`;
+      transportCost = (distance - 15) * 0.5;
+      document.getElementById('transportInfo').innerText = `Distance : ${distance.toFixed(1)} km → Transport : ${transportCost.toFixed(2)}€`;
     }
 
     calculTotal();
 
   } catch (e) {
-    console.log(e);
     document.getElementById('transportInfo').innerText = "Erreur de calcul";
   }
 }
 
 function calculTotal() {
   let total = 250;
-
   const iaCount = document.querySelectorAll('.ia:checked').length;
-
   if (iaCount === 1) total += 60;
   if (iaCount === 2) total += 90;
   if (iaCount >= 3) total += 110;
