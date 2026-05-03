@@ -164,7 +164,7 @@ nav.scrolled{box-shadow:0 4px 30px rgba(123,63,160,.1)}
 .avail-nav-btn{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--mid);background:transparent;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text2);flex-shrink:0;line-height:1}
 .avail-nav-btn:hover{border-color:var(--gold);color:var(--gold)}
 .avail-nav-btn:disabled{opacity:.3;cursor:not-allowed}
-.avail-cal{display:grid;grid-template-columns:repeat(7,34px);gap:2px}
+.avail-cal{display:grid;grid-template-columns:repeat(7,34px);gap:2px;width:250px}
 .avail-dow{font-size:10px;text-align:center;color:var(--muted);font-weight:600;width:34px;padding:3px 0}
 .avail-day{height:34px;width:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;border:1.5px solid transparent}
 .avail-day.empty{cursor:default}
@@ -217,6 +217,27 @@ nav.scrolled{box-shadow:0 4px 30px rgba(123,63,160,.1)}
 .extras-summary{background:rgba(255,255,255,.06);border-radius:10px;padding:10px 14px;margin-bottom:2px;border:1px solid rgba(255,255,255,.1);min-height:38px}
 .extras-sum-item{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:rgba(255,255,255,.75)}
 .extras-sum-empty{font-size:12px;color:rgba(255,255,255,.35);font-style:italic}
+/* Prints grid */
+.prints-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.print-card{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px;text-align:center;cursor:pointer;transition:all .25s}
+.print-card:hover{border-color:rgba(201,148,42,.4);background:rgba(255,255,255,.1)}
+.print-card.selected{border-color:var(--gold);background:rgba(201,148,42,.18)}
+.print-icon{font-size:18px;margin-bottom:4px}
+.print-label{font-size:10px;color:rgba(255,255,255,.7);font-weight:500;line-height:1.3;margin-bottom:4px}
+.print-card.selected .print-label{color:var(--white)}
+.print-price{font-size:12px;font-weight:700;color:var(--gold-light)}
+/* IA form cards */
+.ia-form-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.ia-form-card{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 10px;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:10px}
+.ia-form-card:hover{border-color:rgba(201,148,42,.4);background:rgba(255,255,255,.1)}
+.ia-form-card.selected{border-color:var(--gold);background:rgba(201,148,42,.18)}
+.ia-form-icon{font-size:22px;flex-shrink:0}
+.ia-form-info{flex:1;min-width:0}
+.ia-form-name{font-size:12px;font-weight:600;color:rgba(255,255,255,.8);line-height:1.2}
+.ia-form-card.selected .ia-form-name{color:var(--white)}
+.ia-form-price{font-size:11px;color:var(--gold-light);margin-top:2px;font-weight:600}
+.ia-form-check{width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;flex-shrink:0;transition:all .2s}
+.ia-form-card.selected .ia-form-check{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:var(--gold);color:var(--dark);font-weight:700}
 /* Payment */
 .stripe-badge{background:rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;border:2px solid rgba(201,148,42,.5);display:flex;align-items:center;gap:12px}
 .btn-submit{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);border:none;padding:16px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;border-radius:12px;transition:all .3s;box-shadow:0 6px 24px rgba(201,148,42,.5);margin-top:4px}
@@ -597,7 +618,7 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
     <div id="multi-note" style="display:none;background:#f0e8f8;border:1px solid rgba(123,63,160,.3);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--violet);margin-bottom:10px">
       📌 Sélectionnez la <strong>date de début</strong> puis la <strong>date de fin</strong>. Location multi-jours — tarif à confirmer.
     </div>
-    <div class="avail-months" id="avail-months"></div>
+    <div style="display:flex;justify-content:center"><div class="avail-months" id="avail-months"></div></div>
     <div class="avail-legend">
       <div class="avail-legend-item"><div class="avail-legend-dot ld-free"></div>Disponible</div>
       <div class="avail-legend-item"><div class="avail-legend-dot ld-taken"></div>Réservé</div>
@@ -666,31 +687,87 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
 
     <div class="form-divider"></div>
     <div class="form-section-title">📸 Nombre d'impressions</div>
-    <div class="form-row">
-      <div class="custom-select-wrap">
-        <div class="custom-select-trigger" id="prints-trigger" onclick="toggleSelect('prints')">
-          <span id="prints-value">100 impressions — 210 € TTC</span>
-          <span class="custom-select-arrow">▼</span>
-        </div>
-        <div class="custom-select-dropdown" id="prints-dropdown">
-          <div class="custom-select-option" onclick="chooseSelect('prints','Sans impression — 180 € TTC',180)">Sans impression<span class="opt-price">180 €</span></div>
-          <div class="custom-select-option selected" onclick="chooseSelect('prints','100 impressions — 210 € TTC',210)">100 impressions<span class="opt-price">210 €</span></div>
-          <div class="custom-select-option" onclick="chooseSelect('prints','200 impressions — 230 € TTC',230)">200 impressions<span class="opt-price">230 €</span></div>
-          <div class="custom-select-option" onclick="chooseSelect('prints','300 impressions — 250 € TTC',250)">300 impressions<span class="opt-price">250 €</span></div>
-          <div class="custom-select-option" onclick="chooseSelect('prints','400 impressions — 270 € TTC',270)">400 impressions<span class="opt-price">270 €</span></div>
-          <div class="custom-select-option" onclick="chooseSelect('prints','500 impressions — 290 € TTC',290)">500 impressions<span class="opt-price">290 €</span></div>
-          <div class="custom-select-option" onclick="chooseSelect('prints','600 impressions — 310 € TTC',310)">600 impressions<span class="opt-price">310 €</span></div>
-          <div class="custom-select-option" onclick="chooseSelect('prints','700 impressions — 330 € TTC',330)">700 impressions<span class="opt-price">330 €</span></div>
-        </div>
-        <input type="hidden" id="prints-val" value="210">
+    <div class="prints-grid">
+      <div class="print-card selected" onclick="selectPrint(this,180,'Sans impression')">
+        <div class="print-icon">🚫</div>
+        <div class="print-label">Sans impression</div>
+        <div class="print-price">180 €</div>
+      </div>
+      <div class="print-card" onclick="selectPrint(this,210,'100 impressions')">
+        <div class="print-icon">🖨️</div>
+        <div class="print-label">100 impressions</div>
+        <div class="print-price">210 €</div>
+      </div>
+      <div class="print-card" onclick="selectPrint(this,230,'200 impressions')">
+        <div class="print-icon">🖨️</div>
+        <div class="print-label">200 impressions</div>
+        <div class="print-price">230 €</div>
+      </div>
+      <div class="print-card" onclick="selectPrint(this,250,'300 impressions')">
+        <div class="print-icon">🖨️</div>
+        <div class="print-label">300 impressions</div>
+        <div class="print-price">250 €</div>
+      </div>
+      <div class="print-card" onclick="selectPrint(this,270,'400 impressions')">
+        <div class="print-icon">🖨️</div>
+        <div class="print-label">400 impressions</div>
+        <div class="print-price">270 €</div>
+      </div>
+      <div class="print-card" onclick="selectPrint(this,290,'500 impressions')">
+        <div class="print-icon">🖨️</div>
+        <div class="print-label">500 impressions</div>
+        <div class="print-price">290 €</div>
+      </div>
+      <div class="print-card" onclick="selectPrint(this,310,'600 impressions')">
+        <div class="print-icon">🖨️</div>
+        <div class="print-label">600 impressions</div>
+        <div class="print-price">310 €</div>
+      </div>
+      <div class="print-card" onclick="selectPrint(this,330,'700 impressions')">
+        <div class="print-icon">🖨️</div>
+        <div class="print-label">700 impressions</div>
+        <div class="print-price">330 €</div>
       </div>
     </div>
+    <input type="hidden" id="prints-val" value="180">
 
     <div class="form-divider"></div>
-    <div class="form-section-title">🤖 Options IA sélectionnées</div>
-    <div class="extras-summary" id="form-ia-summary">
-      <div class="extras-sum-empty">Aucune option IA — <a href="#tarifs" onclick="smoothTo(event,'tarifs')" style="color:var(--gold);text-decoration:none">Choisir ci-dessus</a></div>
+    <div class="form-section-title">🤖 Options IA</div>
+    <div class="ia-form-cards" id="form-ia-cards">
+      <div class="ia-form-card" onclick="toggleIAFromForm('ia-none')" id="fcard-ia-none">
+        <span class="ia-form-icon">📸</span>
+        <div class="ia-form-info">
+          <div class="ia-form-name">Sans IA</div>
+          <div class="ia-form-price">Inclus</div>
+        </div>
+        <div class="ia-form-check">✓</div>
+      </div>
+      <div class="ia-form-card" onclick="toggleIAFromForm('ia-costume')" id="fcard-ia-costume">
+        <span class="ia-form-icon">🤖</span>
+        <div class="ia-form-info">
+          <div class="ia-form-name">IA Costumes</div>
+          <div class="ia-form-price">+60 €</div>
+        </div>
+        <div class="ia-form-check">✓</div>
+      </div>
+      <div class="ia-form-card" onclick="toggleIAFromForm('ia-fond')" id="fcard-ia-fond">
+        <span class="ia-form-icon">🌄</span>
+        <div class="ia-form-info">
+          <div class="ia-form-name">IA Fonds</div>
+          <div class="ia-form-price">+60 €</div>
+        </div>
+        <div class="ia-form-check">✓</div>
+      </div>
+      <div class="ia-form-card" onclick="toggleIAFromForm('ia-friz')" id="fcard-ia-friz">
+        <span class="ia-form-icon">🎭</span>
+        <div class="ia-form-info">
+          <div class="ia-form-name">Friz Generator</div>
+          <div class="ia-form-price">+60 €</div>
+        </div>
+        <div class="ia-form-check">✓</div>
+      </div>
     </div>
+    <p id="ia-form-combo" style="font-size:11px;color:var(--gold-light);margin-top:8px;min-height:16px;font-style:italic"></p>
 
     <div class="form-divider"></div>
     <div class="form-section-title">🎉 Locations complémentaires</div>
@@ -910,9 +987,7 @@ function chooseSelect(id,label,value){
   document.getElementById(id+'-trigger').classList.remove('open');
   document.getElementById(id+'-dropdown').classList.remove('open');
   if(id==='prints'){
-    document.getElementById('prints-val').value=value;
-    document.getElementById('sum-prints-label').textContent=label.split('—')[0].trim();
-    document.getElementById('sum-prints').textContent=value+' €';
+    // handled by selectPrint now
   }
   if(id==='event'){
     const lblE=document.getElementById('lbl-event');if(lblE)lblE.style.color='rgba(255,255,255,.5)';
