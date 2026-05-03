@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -21,29 +20,29 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);o
 /* ── CURSOR desktop only ── */
 .cursor,.cursor-dot{display:none}
 @media(pointer:fine){
-.cursor{display:block;position:fixed;width:20px;height:20px;border:2px solid var(–gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s,background .15s;transform:translate(-50%,-50%)}
-.cursor-dot{display:block;position:fixed;width:6px;height:6px;background:var(–violet);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+  .cursor{display:block;position:fixed;width:20px;height:20px;border:2px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s,background .15s;transform:translate(-50%,-50%)}
+  .cursor-dot{display:block;position:fixed;width:6px;height:6px;background:var(--violet);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
 }
 
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(253,246,238,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,148,42,.15);transition:padding .3s,box-shadow .3s}
 nav.scrolled{box-shadow:0 4px 30px rgba(123,63,160,.1)}
-.logo-text{font-family:‘Cormorant Garamond’,serif;font-size:19px;font-weight:600;color:var(–dark)}
-.logo-text span{color:var(–gold)}
-.logo-sub{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(–muted);display:block;margin-top:-1px}
+.logo-text{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--dark)}
+.logo-text span{color:var(--gold)}
+.logo-sub{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);display:block;margin-top:-1px}
 .nav-links{display:none}
-.nav-cta{background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–white);border:none;padding:10px 20px;border-radius:100px;font-family:‘Outfit’,sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;box-shadow:0 3px 14px rgba(201,148,42,.35)}
+.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--white);border:none;padding:10px 20px;border-radius:100px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;box-shadow:0 3px 14px rgba(201,148,42,.35)}
 .nav-enterprise{display:none}
 @media(min-width:900px){
-nav{padding:18px 60px}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{color:var(–text2);text-decoration:none;font-size:13px;font-weight:500;transition:color .3s;position:relative}
-.nav-links a::after{content:’’;position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(–gold);transform:scaleX(0);transition:transform .3s}
-.nav-links a:hover{color:var(–gold)}
-.nav-links a:hover::after{transform:scaleX(1)}
-.nav-cta{padding:11px 26px}
-.nav-enterprise{display:inline-block;background:transparent;color:var(–violet);border:2px solid var(–violet);padding:9px 18px;border-radius:100px;font-family:‘Outfit’,sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;margin-right:8px}
-.nav-enterprise:hover{background:var(–violet);color:var(–white)}
+  nav{padding:18px 60px}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;transition:color .3s;position:relative}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .nav-cta{padding:11px 26px}
+  .nav-enterprise{display:inline-block;background:transparent;color:var(--violet);border:2px solid var(--violet);padding:9px 18px;border-radius:100px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;margin-right:8px}
+  .nav-enterprise:hover{background:var(--violet);color:var(--white)}
 }
 
 /* ── HERO ── */
@@ -52,60 +51,60 @@ nav{padding:18px 60px}
 .orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.4}
 .orb1{width:300px;height:300px;background:radial-gradient(circle,#c9942a55,transparent);top:-60px;right:-60px;animation:floatOrb 8s ease-in-out infinite}
 .orb2{width:250px;height:250px;background:radial-gradient(circle,#7b3fa055,transparent);bottom:-30px;left:-60px;animation:floatOrb 10s ease-in-out infinite reverse}
-.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.9);border:1px solid rgba(201,148,42,.3);color:var(–gold);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:20px;opacity:0;animation:fadeUp .7s .2s forwards}
-.hero h1{font-family:‘Cormorant Garamond’,serif;font-size:clamp(38px,11vw,100px);line-height:1.05;font-weight:600;opacity:0;animation:fadeUp .7s .4s forwards;color:var(–dark)}
-.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(–gold),var(–violet2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{max-width:440px;margin:16px auto 0;color:var(–text2);font-size:15px;line-height:1.65;font-weight:300;opacity:0;animation:fadeUp .7s .6s forwards}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.9);border:1px solid rgba(201,148,42,.3);color:var(--gold);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:20px;opacity:0;animation:fadeUp .7s .2s forwards}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,11vw,100px);line-height:1.05;font-weight:600;opacity:0;animation:fadeUp .7s .4s forwards;color:var(--dark)}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--gold),var(--violet2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{max-width:440px;margin:16px auto 0;color:var(--text2);font-size:15px;line-height:1.65;font-weight:300;opacity:0;animation:fadeUp .7s .6s forwards}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px;opacity:0;animation:fadeUp .7s .8s forwards}
-.btn-gold{background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–white);border:none;padding:13px 28px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block;box-shadow:0 6px 22px rgba(201,148,42,.4)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--white);border:none;padding:13px 28px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block;box-shadow:0 6px 22px rgba(201,148,42,.4)}
 .btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,148,42,.55)}
-.btn-outline{background:transparent;color:var(–violet);border:2px solid var(–violet);padding:12px 26px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block}
-.btn-outline:hover{background:var(–violet);color:var(–white)}
+.btn-outline{background:transparent;color:var(--violet);border:2px solid var(--violet);padding:12px 26px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block}
+.btn-outline:hover{background:var(--violet);color:var(--white)}
 .hero-stats{display:flex;gap:32px;justify-content:center;margin-top:36px;opacity:0;animation:fadeUp .7s 1s forwards}
 .stat{text-align:center}
-.stat-num{font-family:‘Cormorant Garamond’,serif;font-size:34px;font-weight:600;background:linear-gradient(135deg,var(–gold),var(–violet2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.stat-label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(–muted);margin-top:2px}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;background:linear-gradient(135deg,var(--gold),var(--violet2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:2px}
 
 /* ── SCROLL MARGIN for fixed nav ── */
 #hero,#avantapres,#tarifs,#locations,#reservation{scroll-margin-top:60px}
 
 /* ── SECTION BASE ── */
 .sec{padding:40px 16px;max-width:900px;margin:0 auto}
-.s-label{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(–violet);margin-bottom:8px;display:block;font-weight:600}
-.s-title{font-family:‘Cormorant Garamond’,serif;font-size:clamp(24px,7vw,52px);line-height:1.1;color:var(–dark)}
-.s-title em{font-style:italic;background:linear-gradient(135deg,var(–gold),var(–violet2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.s-label{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--violet);margin-bottom:8px;display:block;font-weight:600}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,7vw,52px);line-height:1.1;color:var(--dark)}
+.s-title em{font-style:italic;background:linear-gradient(135deg,var(--gold),var(--violet2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* ── VIDÉOS IA ── */
-.ba-bg{background:linear-gradient(180deg,var(–warm),#e8ddf5 60%,var(–cream));padding:0}
+.ba-bg{background:linear-gradient(180deg,var(--warm),#e8ddf5 60%,var(--cream));padding:0}
 .ba-inner{max-width:1300px;margin:0 auto;padding:40px 16px 32px}
 .ba-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:20px}
-.ba-card{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/10;box-shadow:0 12px 40px rgba(123,63,160,.2);background:var(–dark)}
+.ba-card{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/10;box-shadow:0 12px 40px rgba(123,63,160,.2);background:var(--dark)}
 .ba-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .ba-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,46,.88),rgba(26,15,46,.15) 50%,transparent 75%);z-index:2;pointer-events:none}
 .ba-card-content{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:16px 14px}
-.ba-card-title{font-family:‘Cormorant Garamond’,serif;font-size:18px;font-weight:600;color:var(–white);line-height:1.2;margin-bottom:4px}
+.ba-card-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:4px}
 .ba-card-desc{font-size:11px;color:rgba(255,255,255,.72);line-height:1.5;font-weight:300}
-.ba-card-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(201,148,42,.25);border:1px solid rgba(201,148,42,.5);color:var(–gold-light);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-bottom:8px;backdrop-filter:blur(6px)}
+.ba-card-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(201,148,42,.25);border:1px solid rgba(201,148,42,.5);color:var(--gold-light);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-bottom:8px;backdrop-filter:blur(6px)}
 @media(min-width:900px){.ba-grid{grid-template-columns:repeat(3,1fr);gap:22px}.ba-card{aspect-ratio:9/16}.ba-inner{padding:80px 60px}}
 
 /* ── OPTIONS IA ── */
-.pricing-bg{background:linear-gradient(180deg,var(–cream),#f8f0e8);padding:0}
+.pricing-bg{background:linear-gradient(180deg,var(--cream),#f8f0e8);padding:0}
 .pricing-inner{max-width:900px;margin:0 auto;padding:36px 16px 40px}
 .ia-cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:24px}
-.ia-card{background:var(–white);border-radius:14px;padding:16px;border:2px solid var(–mid);cursor:pointer;transition:all .25s;position:relative;display:flex;gap:12px;align-items:flex-start}
+.ia-card{background:var(--white);border-radius:14px;padding:16px;border:2px solid var(--mid);cursor:pointer;transition:all .25s;position:relative;display:flex;gap:12px;align-items:flex-start}
 .ia-card:active{transform:scale(.98)}
-.ia-card.selected{border-color:var(–gold);background:linear-gradient(135deg,#fdf8ef,#fff)}
+.ia-card.selected{border-color:var(--gold);background:linear-gradient(135deg,#fdf8ef,#fff)}
 .ia-card-icon{font-size:26px;flex-shrink:0}
 .ia-card-body{flex:1;padding-right:28px}
-.ia-card-name{font-family:‘Cormorant Garamond’,serif;font-size:17px;font-weight:600;color:var(–dark);margin-bottom:3px}
-.ia-card-desc{font-size:12px;color:var(–muted);line-height:1.55;font-weight:300}
-.ia-card-price{font-size:13px;font-weight:700;color:var(–gold);margin-top:6px}
-.ia-check{position:absolute;top:14px;right:14px;width:22px;height:22px;border-radius:50%;border:2px solid var(–mid);display:flex;align-items:center;justify-content:center;transition:all .22s;font-size:10px;color:transparent;font-weight:700}
-.ia-card.selected .ia-check{background:linear-gradient(135deg,var(–gold),var(–gold2));border-color:var(–gold);color:var(–white)}
-.ia-combo-hint{text-align:center;margin-top:12px;font-size:12px;color:var(–violet);font-style:italic;font-weight:500}
-/* “En savoir plus” button on IA cards */
-.ia-card-more{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:11px;color:var(–violet);font-weight:600;background:rgba(123,63,160,.08);border:1px solid rgba(123,63,160,.2);padding:4px 10px;border-radius:100px;cursor:pointer;transition:all .2s}
-.ia-card-more:hover{background:var(–violet);color:var(–white)}
+.ia-card-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--dark);margin-bottom:3px}
+.ia-card-desc{font-size:12px;color:var(--muted);line-height:1.55;font-weight:300}
+.ia-card-price{font-size:13px;font-weight:700;color:var(--gold);margin-top:6px}
+.ia-check{position:absolute;top:14px;right:14px;width:22px;height:22px;border-radius:50%;border:2px solid var(--mid);display:flex;align-items:center;justify-content:center;transition:all .22s;font-size:10px;color:transparent;font-weight:700}
+.ia-card.selected .ia-check{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:var(--gold);color:var(--white)}
+.ia-combo-hint{text-align:center;margin-top:12px;font-size:12px;color:var(--violet);font-style:italic;font-weight:500}
+/* "En savoir plus" button on IA cards */
+.ia-card-more{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:11px;color:var(--violet);font-weight:600;background:rgba(123,63,160,.08);border:1px solid rgba(123,63,160,.2);padding:4px 10px;border-radius:100px;cursor:pointer;transition:all .2s}
+.ia-card-more:hover{background:var(--violet);color:var(--white)}
 /* highlight effect when scrolled-to */
 .ia-card.highlight-flash{border-color:#e74c3c!important;box-shadow:0 0 0 3px rgba(231,76,60,.3)!important;animation:flashRed .7s ease}
 @keyframes flashRed{0%{box-shadow:0 0 0 0 rgba(231,76,60,.6)}100%{box-shadow:0 0 0 3px rgba(231,76,60,.3)}}
@@ -115,129 +114,129 @@ nav{padding:18px 60px}
 .extras-bg{background:linear-gradient(160deg,#f0e8f8,#fdf6ee,#f8f0e8);padding:0}
 .extras-inner{max-width:900px;margin:0 auto;padding:36px 16px 40px}
 .extras-grid{display:grid;grid-template-columns:1fr;gap:12px}
-.extra-card{background:var(–white);border-radius:14px;padding:18px 16px;border:2px solid var(–mid);cursor:pointer;transition:all .25s}
+.extra-card{background:var(--white);border-radius:14px;padding:18px 16px;border:2px solid var(--mid);cursor:pointer;transition:all .25s}
 .extra-card:active{transform:scale(.98)}
-.extra-card.selected{border-color:var(–gold);background:linear-gradient(160deg,#fff,#fdf5e6)}
-.extra-card.selected .extra-chk{background:linear-gradient(135deg,var(–gold),var(–gold2));border-color:var(–gold);color:var(–white)}
+.extra-card.selected{border-color:var(--gold);background:linear-gradient(160deg,#fff,#fdf5e6)}
+.extra-card.selected .extra-chk{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:var(--gold);color:var(--white)}
 .extra-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .extra-icon{font-size:26px}
-.extra-chk{width:24px;height:24px;border-radius:50%;border:2px solid var(–mid);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .25s;color:transparent;flex-shrink:0}
-.extra-name{font-family:‘Cormorant Garamond’,serif;font-size:17px;font-weight:600;color:var(–dark);margin-bottom:4px}
-.extra-desc{font-size:12px;color:var(–muted);line-height:1.5;font-weight:300}
-.extra-price{margin-top:10px;padding-top:10px;border-top:1px solid rgba(0,0,0,.06);font-size:13px;font-weight:700;color:var(–gold)}
+.extra-chk{width:24px;height:24px;border-radius:50%;border:2px solid var(--mid);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .25s;color:transparent;flex-shrink:0}
+.extra-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--dark);margin-bottom:4px}
+.extra-desc{font-size:12px;color:var(--muted);line-height:1.5;font-weight:300}
+.extra-price{margin-top:10px;padding-top:10px;border-top:1px solid rgba(0,0,0,.06);font-size:13px;font-weight:700;color:var(--gold)}
 .extras-qty{display:flex;align-items:center;gap:10px;margin-top:8px}
-.qty-btn{width:30px;height:30px;border-radius:50%;border:2px solid var(–mid);background:transparent;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(–text2);line-height:1}
-.qty-btn:hover{border-color:var(–gold);color:var(–gold)}
-.qty-val{font-size:15px;font-weight:600;min-width:20px;text-align:center;color:var(–dark)}
-.qty-label{font-size:11px;color:var(–muted)}
+.qty-btn{width:30px;height:30px;border-radius:50%;border:2px solid var(--mid);background:transparent;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text2);line-height:1}
+.qty-btn:hover{border-color:var(--gold);color:var(--gold)}
+.qty-val{font-size:15px;font-weight:600;min-width:20px;text-align:center;color:var(--dark)}
+.qty-label{font-size:11px;color:var(--muted)}
 @media(min-width:900px){.extras-grid{grid-template-columns:repeat(3,1fr);gap:18px}}
 
 /* ── RÉSERVATION ── */
-.resa-bg{background:var(–cream);padding:0}
+.resa-bg{background:var(--cream);padding:0}
 .resa-inner{max-width:900px;margin:0 auto;padding:36px 16px 48px}
 /* Info boxes */
 .resa-boxes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
-.resa-box{background:var(–white);border-radius:12px;border:1px solid rgba(201,148,42,.15);padding:12px 14px}
-.resa-box-title{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(–violet);font-weight:600;margin-bottom:4px}
-.resa-box p{font-size:12px;color:var(–text2);line-height:1.5}
+.resa-box{background:var(--white);border-radius:12px;border:1px solid rgba(201,148,42,.15);padding:12px 14px}
+.resa-box-title{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--violet);font-weight:600;margin-bottom:4px}
+.resa-box p{font-size:12px;color:var(--text2);line-height:1.5}
 /* Disponibilités */
-.avail-section{background:var(–white);border-radius:14px;padding:16px;border:1px solid rgba(201,148,42,.15);margin-bottom:20px}
-.avail-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(–violet);font-weight:600;margin-bottom:12px}
+.avail-section{background:var(--white);border-radius:14px;padding:16px;border:1px solid rgba(201,148,42,.15);margin-bottom:20px}
+.avail-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--violet);font-weight:600;margin-bottom:12px}
 .avail-months{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
 .avail-months::-webkit-scrollbar{display:none}
 .avail-month{min-width:200px;scroll-snap-align:start;flex-shrink:0}
-.avail-month-name{font-size:12px;font-weight:600;color:var(–dark);text-align:center;margin-bottom:8px}
+.avail-month-name{font-size:12px;font-weight:600;color:var(--dark);text-align:center;margin-bottom:8px}
 .avail-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
-.avail-dow{font-size:9px;text-align:center;color:var(–muted);font-weight:600;letter-spacing:.5px;padding:2px 0}
+.avail-dow{font-size:9px;text-align:center;color:var(--muted);font-weight:600;letter-spacing:.5px;padding:2px 0}
 .avail-day{height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;border:1.5px solid transparent}
 .avail-day.empty{cursor:default}
-.avail-day.available{background:var(–white);border-color:var(–mid);color:var(–text2)}
-.avail-day.available:hover,.avail-day.available.chosen{background:linear-gradient(135deg,var(–gold),var(–gold2));border-color:var(–gold);color:var(–white);font-weight:700}
+.avail-day.available{background:var(--white);border-color:var(--mid);color:var(--text2)}
+.avail-day.available:hover,.avail-day.available.chosen{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:var(--gold);color:var(--white);font-weight:700}
 .avail-day.taken{background:#fce8e8;border-color:#f5c6c6;color:#c0392b;cursor:not-allowed;text-decoration:line-through;font-size:11px}
 .avail-day.past{background:rgba(0,0,0,.04);color:rgba(0,0,0,.2);cursor:not-allowed}
 .avail-legend{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
-.avail-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(–muted)}
+.avail-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
 .avail-legend-dot{width:12px;height:12px;border-radius:3px}
-.avail-legend-dot.ld-free{background:var(–white);border:1.5px solid var(–mid)}
+.avail-legend-dot.ld-free{background:var(--white);border:1.5px solid var(--mid)}
 .avail-legend-dot.ld-taken{background:#fce8e8;border:1.5px solid #f5c6c6}
-.avail-gcal-link{display:block;text-align:center;margin-top:12px;font-size:11px;color:var(–violet);text-decoration:none;font-weight:600}
+.avail-gcal-link{display:block;text-align:center;margin-top:12px;font-size:11px;color:var(--violet);text-decoration:none;font-weight:600}
 .avail-gcal-link:hover{text-decoration:underline}
 /* Form */
-.form-wrap{background:var(–white);border-radius:18px;padding:20px 16px;border:1px solid rgba(201,148,42,.12);box-shadow:0 12px 40px rgba(123,63,160,.07)}
-.form-section-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(–violet);font-weight:600;margin-bottom:14px;padding-top:6px}
+.form-wrap{background:var(--white);border-radius:18px;padding:20px 16px;border:1px solid rgba(201,148,42,.12);box-shadow:0 12px 40px rgba(123,63,160,.07)}
+.form-section-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--violet);font-weight:600;margin-bottom:14px;padding-top:6px}
 .form-row{margin-bottom:14px}
-.form-row label{display:block;font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(–muted);margin-bottom:6px;font-weight:500}
-.form-row input{width:100%;background:var(–warm);border:2px solid transparent;color:var(–text);padding:12px 14px;border-radius:10px;font-family:‘Outfit’,sans-serif;font-size:15px;outline:none;transition:all .25s;appearance:none;-webkit-appearance:none}
-.form-row input:focus{border-color:var(–gold);background:var(–white);box-shadow:0 0 0 3px rgba(201,148,42,.1)}
+.form-row label{display:block;font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:500}
+.form-row input{width:100%;background:var(--warm);border:2px solid transparent;color:var(--text);padding:12px 14px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;outline:none;transition:all .25s;appearance:none;-webkit-appearance:none}
+.form-row input:focus{border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(201,148,42,.1)}
 .form-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .transport-info{font-size:11px;margin-top:5px;min-height:16px;font-weight:500}
 /* Custom select */
 .custom-select-wrap{position:relative}
-.custom-select-trigger{width:100%;background:var(–warm);border:2px solid transparent;color:var(–text);padding:12px 14px;border-radius:10px;font-family:‘Outfit’,sans-serif;font-size:15px;cursor:pointer;transition:all .25s;display:flex;justify-content:space-between;align-items:center;user-select:none}
-.custom-select-trigger.open{border-color:var(–gold);background:var(–white)}
-.custom-select-arrow{font-size:9px;transition:transform .3s;color:var(–muted)}
+.custom-select-trigger{width:100%;background:var(--warm);border:2px solid transparent;color:var(--text);padding:12px 14px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;cursor:pointer;transition:all .25s;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.custom-select-trigger.open{border-color:var(--gold);background:var(--white)}
+.custom-select-arrow{font-size:9px;transition:transform .3s;color:var(--muted)}
 .custom-select-trigger.open .custom-select-arrow{transform:rotate(180deg)}
-.custom-select-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(–white);border:2px solid rgba(201,148,42,.25);border-radius:12px;box-shadow:0 16px 50px rgba(0,0,0,.12);z-index:50;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease;pointer-events:none}
+.custom-select-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--white);border:2px solid rgba(201,148,42,.25);border-radius:12px;box-shadow:0 16px 50px rgba(0,0,0,.12);z-index:50;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease;pointer-events:none}
 .custom-select-dropdown.open{max-height:380px;opacity:1;pointer-events:all}
-.custom-select-option{padding:12px 14px;cursor:pointer;font-size:14px;color:var(–text2);transition:all .15s;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,.04)}
+.custom-select-option{padding:12px 14px;cursor:pointer;font-size:14px;color:var(--text2);transition:all .15s;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,.04)}
 .custom-select-option:last-child{border-bottom:none}
-.custom-select-option:hover,.custom-select-option:active{background:var(–warm)}
-.custom-select-option.selected{background:linear-gradient(135deg,#fdf5e6,#fff);color:var(–gold);font-weight:600}
-.custom-select-option .opt-price{font-size:12px;font-weight:700;color:var(–gold)}
-.form-divider{height:1px;background:var(–mid);margin:18px 0}
+.custom-select-option:hover,.custom-select-option:active{background:var(--warm)}
+.custom-select-option.selected{background:linear-gradient(135deg,#fdf5e6,#fff);color:var(--gold);font-weight:600}
+.custom-select-option .opt-price{font-size:12px;font-weight:700;color:var(--gold)}
+.form-divider{height:1px;background:var(--mid);margin:18px 0}
 /* Summary */
 .summary-box{background:linear-gradient(135deg,#fdf5e6,#f8eef8);border-radius:14px;padding:16px;margin-bottom:18px;border:1px solid rgba(201,148,42,.15)}
-.sum-line{display:flex;justify-content:space-between;font-size:13px;color:var(–text2);padding:5px 0}
-.sum-line.subtotal{font-size:15px;color:var(–dark);font-weight:600;border-top:2px solid rgba(201,148,42,.2);margin-top:8px;padding-top:12px}
-.sum-line.acompte-line{font-size:16px;color:var(–violet);font-weight:700;padding:8px 0 4px}
+.sum-line{display:flex;justify-content:space-between;font-size:13px;color:var(--text2);padding:5px 0}
+.sum-line.subtotal{font-size:15px;color:var(--dark);font-weight:600;border-top:2px solid rgba(201,148,42,.2);margin-top:8px;padding-top:12px}
+.sum-line.acompte-line{font-size:16px;color:var(--violet);font-weight:700;padding:8px 0 4px}
 .sum-transport-note{font-size:11px;color:#c0392b;margin-top:6px;background:#fff5f5;border:1px solid #f5c6c6;border-radius:8px;padding:8px 10px;line-height:1.5}
-.extras-summary{background:var(–warm);border-radius:10px;padding:10px 14px;margin-bottom:2px;border:1px solid var(–mid);min-height:38px}
-.extras-sum-item{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:var(–text2)}
-.extras-sum-empty{font-size:12px;color:var(–muted);font-style:italic}
+.extras-summary{background:var(--warm);border-radius:10px;padding:10px 14px;margin-bottom:2px;border:1px solid var(--mid);min-height:38px}
+.extras-sum-item{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:var(--text2)}
+.extras-sum-empty{font-size:12px;color:var(--muted);font-style:italic}
 /* Payment */
-.stripe-badge{background:var(–warm);border-radius:12px;padding:14px 16px;border:2px solid var(–gold);display:flex;align-items:center;gap:12px}
-.btn-submit{width:100%;background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–white);border:none;padding:16px;font-family:‘Outfit’,sans-serif;font-size:14px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;border-radius:12px;transition:all .3s;box-shadow:0 6px 24px rgba(201,148,42,.4);margin-top:4px}
+.stripe-badge{background:var(--warm);border-radius:12px;padding:14px 16px;border:2px solid var(--gold);display:flex;align-items:center;gap:12px}
+.btn-submit{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--white);border:none;padding:16px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;border-radius:12px;transition:all .3s;box-shadow:0 6px 24px rgba(201,148,42,.4);margin-top:4px}
 .btn-submit:active{transform:scale(.98)}
-.form-note{text-align:center;font-size:11px;color:var(–muted);margin-top:10px}
+.form-note{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
 
 /* ── ENTREPRISE PAGE ── */
-#page-enterprise{display:none;position:fixed;inset:0;z-index:200;background:var(–cream);overflow-y:auto}
+#page-enterprise{display:none;position:fixed;inset:0;z-index:200;background:var(--cream);overflow-y:auto}
 #page-enterprise.open{display:block}
-.ent-header{background:linear-gradient(135deg,var(–dark),var(–dark2));padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.ent-logo{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:600;color:var(–gold-light)}
+.ent-header{background:linear-gradient(135deg,var(--dark),var(--dark2));padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.ent-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold-light)}
 .ent-logo span{color:#c49de0}
-.ent-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:var(–white);padding:8px 16px;border-radius:100px;cursor:pointer;font-family:‘Outfit’,sans-serif;font-size:12px;font-weight:600}
+.ent-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:var(--white);padding:8px 16px;border-radius:100px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600}
 .ent-body{max-width:900px;margin:0 auto;padding:28px 16px 48px}
-.ent-hero{text-align:center;margin-bottom:32px;padding:36px 20px;background:linear-gradient(135deg,var(–dark),var(–dark2));border-radius:18px;color:var(–white)}
-.ent-hero h2{font-family:‘Cormorant Garamond’,serif;font-size:clamp(28px,7vw,48px);font-weight:600;line-height:1.1;margin-bottom:12px}
-.ent-hero h2 em{font-style:italic;color:var(–gold-light)}
+.ent-hero{text-align:center;margin-bottom:32px;padding:36px 20px;background:linear-gradient(135deg,var(--dark),var(--dark2));border-radius:18px;color:var(--white)}
+.ent-hero h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,7vw,48px);font-weight:600;line-height:1.1;margin-bottom:12px}
+.ent-hero h2 em{font-style:italic;color:var(--gold-light)}
 .ent-hero p{color:rgba(255,255,255,.6);font-size:14px;max-width:400px;margin:0 auto}
-.ent-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,148,42,.2);border:1px solid rgba(201,148,42,.4);color:var(–gold-light);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:20px}
-.ent-card{background:var(–white);border-radius:16px;padding:24px;border:1px solid rgba(201,148,42,.15);box-shadow:0 6px 30px rgba(0,0,0,.05);margin-bottom:20px}
-.ent-card h3{font-family:‘Cormorant Garamond’,serif;font-size:22px;font-weight:600;color:var(–dark);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(–mid)}
+.ent-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,148,42,.2);border:1px solid rgba(201,148,42,.4);color:var(--gold-light);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:20px}
+.ent-card{background:var(--white);border-radius:16px;padding:24px;border:1px solid rgba(201,148,42,.15);box-shadow:0 6px 30px rgba(0,0,0,.05);margin-bottom:20px}
+.ent-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--mid)}
 .ent-table{width:100%;border-collapse:collapse}
-.ent-table th{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(–muted);font-weight:600;padding:8px 0;text-align:left;border-bottom:1px solid var(–mid)}
+.ent-table th{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600;padding:8px 0;text-align:left;border-bottom:1px solid var(--mid)}
 .ent-table th:last-child,.ent-table td:last-child{text-align:right}
-.ent-table td{padding:10px 0;border-bottom:1px solid rgba(0,0,0,.04);font-size:13px;color:var(–text2)}
+.ent-table td{padding:10px 0;border-bottom:1px solid rgba(0,0,0,.04);font-size:13px;color:var(--text2)}
 .ent-table tr:last-child td{border-bottom:none}
-.ent-table .ht{font-weight:700;color:var(–gold)}
-.ent-note{font-size:11px;color:var(–muted);margin-top:12px;font-style:italic}
+.ent-table .ht{font-weight:700;color:var(--gold)}
+.ent-note{font-size:11px;color:var(--muted);margin-top:12px;font-style:italic}
 
 /* ── FOOTER ── */
-footer{background:var(–dark);padding:36px 16px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
-.footer-logo{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:600;color:var(–gold-light)}
+footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold-light)}
 .footer-logo span{color:#c49de0}
 .footer-copy{font-size:11px;color:rgba(255,255,255,.4);line-height:1.7}
 .footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
 .footer-links a{font-size:11px;color:rgba(255,255,255,.4);text-decoration:none}
-.footer-links a:hover{color:var(–gold-light)}
+.footer-links a:hover{color:var(--gold-light)}
 
 /* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
 .reveal.visible{opacity:1;transform:none}
 
 /* ── TOAST ── */
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–white);padding:14px 20px;border-radius:12px;font-weight:600;box-shadow:0 8px 30px rgba(201,148,42,.5);z-index:9999;opacity:0;transition:all .4s;font-size:13px;width:calc(100% - 32px);max-width:340px;text-align:center}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--white);padding:14px 20px;border-radius:12px;font-weight:600;box-shadow:0 8px 30px rgba(201,148,42,.5);z-index:9999;opacity:0;transition:all .4s;font-size:13px;width:calc(100% - 32px);max-width:340px;text-align:center}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
 /* ── ANIMATIONS ── */
@@ -247,21 +246,20 @@ footer{background:var(–dark);padding:36px 16px;display:flex;flex-direction:col
 
 /* ── DESKTOP overrides ── */
 @media(min-width:900px){
-.sec{padding:90px 60px}
-.ba-inner{padding:80px 60px}
-.pricing-inner{padding:90px 60px}
-.extras-inner{padding:90px 60px}
-.resa-inner{padding:90px 60px}
-.resa-boxes{grid-template-columns:repeat(3,1fr)}
-.form-wrap{padding:40px}
-.form-2col{grid-template-columns:1fr 1fr}
-footer{flex-direction:row;justify-content:space-between;padding:52px 60px}
-.ia-cards{grid-template-columns:repeat(2,1fr);gap:16px}
-.ia-card{padding:22px 20px}
-.extras-grid{grid-template-columns:repeat(3,1fr);gap:18px}
+  .sec{padding:90px 60px}
+  .ba-inner{padding:80px 60px}
+  .pricing-inner{padding:90px 60px}
+  .extras-inner{padding:90px 60px}
+  .resa-inner{padding:90px 60px}
+  .resa-boxes{grid-template-columns:repeat(3,1fr)}
+  .form-wrap{padding:40px}
+  .form-2col{grid-template-columns:1fr 1fr}
+  footer{flex-direction:row;justify-content:space-between;padding:52px 60px}
+  .ia-cards{grid-template-columns:repeat(2,1fr);gap:16px}
+  .ia-card{padding:22px 20px}
+  .extras-grid{grid-template-columns:repeat(3,1fr);gap:18px}
 }
 </style>
-
 </head>
 <body>
 
@@ -270,7 +268,6 @@ footer{flex-direction:row;justify-content:space-between;padding:52px 60px}
 <div class="toast" id="toast"></div>
 
 <!-- ── PAGE ENTREPRISE ── -->
-
 <div id="page-enterprise">
   <div class="ent-header">
     <div class="ent-logo">Trema<span>.</span> Entreprises</div>
@@ -346,7 +343,6 @@ footer{flex-direction:row;justify-content:space-between;padding:52px 60px}
 </div>
 
 <!-- ── NAV ── -->
-
 <nav id="nav">
   <div class="logo">
     <div class="logo-text">Trema<span>.</span></div>
@@ -365,7 +361,6 @@ footer{flex-direction:row;justify-content:space-between;padding:52px 60px}
 </nav>
 
 <!-- ── HERO ── -->
-
 <div class="hero" id="hero">
   <div class="hero-orbs">
     <div class="orb orb1"></div>
@@ -386,7 +381,6 @@ footer{flex-direction:row;justify-content:space-between;padding:52px 60px}
 </div>
 
 <!-- ── VIDÉOS IA ── -->
-
 <div class="ba-bg" id="avantapres">
 <div class="ba-inner">
   <span class="s-label reveal">Nos technologies</span>
@@ -427,7 +421,6 @@ footer{flex-direction:row;justify-content:space-between;padding:52px 60px}
 </div>
 
 <!-- ── TARIFS & OPTIONS IA ── -->
-
 <div class="pricing-bg" id="tarifs">
 <div class="pricing-inner">
   <span class="s-label reveal">Tarifs &amp; Options</span>
@@ -476,7 +469,6 @@ footer{flex-direction:row;justify-content:space-between;padding:52px 60px}
 </div>
 
 <!-- ── LOCATIONS ── -->
-
 <div class="extras-bg" id="locations">
 <div class="extras-inner">
   <span class="s-label reveal">Locations complémentaires</span>
@@ -542,14 +534,12 @@ footer{flex-direction:row;justify-content:space-between;padding:52px 60px}
 </div>
 
 <!-- ── RÉSERVATION ── -->
-
 <div class="resa-bg" id="reservation">
 <div class="resa-inner">
   <span class="s-label reveal">Réservation</span>
   <h2 class="s-title reveal">Planifiez votre<br><em>événement</em></h2>
 
   <!-- Info boxes -->
-
   <div class="resa-boxes reveal" style="margin-top:20px">
     <div class="resa-box">
       <div class="resa-box-title">📍 Livraison</div>
@@ -566,7 +556,6 @@ footer{flex-direction:row;justify-content:space-between;padding:52px 60px}
   </div>
 
   <!-- Disponibilités -->
-
   <div class="avail-section reveal" style="margin-top:20px">
     <div class="avail-title">📅 Disponibilités — choisissez votre date</div>
     <div class="avail-months" id="avail-months"></div>
@@ -578,116 +567,112 @@ footer{flex-direction:row;justify-content:space-between;padding:52px 60px}
   </div>
 
   <!-- FORM -->
-
   <div class="form-wrap reveal" style="margin-top:20px">
 
-```
-<div class="form-section-title">👤 Vos coordonnées</div>
-<div class="form-2col">
-  <div class="form-row"><label>Prénom</label><input type="text" id="prenom" placeholder="Marie"></div>
-  <div class="form-row"><label>Nom</label><input type="text" id="nom" placeholder="Dupont"></div>
-</div>
-<div class="form-2col">
-  <div class="form-row"><label>Email</label><input type="email" id="email" placeholder="marie@email.com"></div>
-  <div class="form-row"><label>Téléphone</label><input type="tel" id="tel" placeholder="06 xx xx xx xx"></div>
-</div>
-
-<div class="form-divider"></div>
-<div class="form-section-title">📅 Votre événement</div>
-<div class="form-row">
-  <label>Date sélectionnée</label>
-  <input type="text" id="date-display" placeholder="Cliquez sur une date ci-dessus" readonly style="cursor:pointer;background:var(--warm)" onclick="smoothTo(event,'reservation');setTimeout(()=>document.querySelector('.avail-months').scrollIntoView({behavior:'smooth'}),100)">
-  <input type="hidden" id="date-val">
-</div>
-<div class="form-row">
-  <label>Type d'événement</label>
-  <div class="custom-select-wrap">
-    <div class="custom-select-trigger" id="event-trigger" onclick="toggleSelect('event')">
-      <span id="event-value">Sélectionner...</span>
-      <span class="custom-select-arrow">▼</span>
+    <div class="form-section-title">👤 Vos coordonnées</div>
+    <div class="form-2col">
+      <div class="form-row"><label>Prénom</label><input type="text" id="prenom" placeholder="Marie"></div>
+      <div class="form-row"><label>Nom</label><input type="text" id="nom" placeholder="Dupont"></div>
     </div>
-    <div class="custom-select-dropdown" id="event-dropdown">
-      <div class="custom-select-option" onclick="chooseSelect('event','Mariage','Mariage')">Mariage</div>
-      <div class="custom-select-option" onclick="chooseSelect('event','Anniversaire','Anniversaire')">Anniversaire</div>
-      <div class="custom-select-option" onclick="chooseSelect('event','Soirée d\'entreprise','Soirée d\'entreprise')">Soirée d'entreprise</div>
-      <div class="custom-select-option" onclick="chooseSelect('event','Baptême / Communion','Baptême / Communion')">Baptême / Communion</div>
-      <div class="custom-select-option" onclick="chooseSelect('event','Autre','Autre')">Autre</div>
+    <div class="form-2col">
+      <div class="form-row"><label>Email</label><input type="email" id="email" placeholder="marie@email.com"></div>
+      <div class="form-row"><label>Téléphone</label><input type="tel" id="tel" placeholder="06 xx xx xx xx"></div>
     </div>
-    <input type="hidden" id="type-event" value="">
-  </div>
-</div>
-<div class="form-row">
-  <label>Ville ou adresse de l'événement</label>
-  <input type="text" id="adresse" placeholder="Ex : Nancy, 54000" oninput="calculDistance()">
-  <div class="transport-info" id="transportInfo"></div>
-</div>
 
-<div class="form-divider"></div>
-<div class="form-section-title">📸 Nombre d'impressions</div>
-<div class="form-row">
-  <div class="custom-select-wrap">
-    <div class="custom-select-trigger" id="prints-trigger" onclick="toggleSelect('prints')">
-      <span id="prints-value">100 impressions — 210 € TTC</span>
-      <span class="custom-select-arrow">▼</span>
+    <div class="form-divider"></div>
+    <div class="form-section-title">📅 Votre événement</div>
+    <div class="form-row">
+      <label>Date sélectionnée</label>
+      <input type="text" id="date-display" placeholder="Cliquez sur une date ci-dessus" readonly style="cursor:pointer;background:var(--warm)" onclick="smoothTo(event,'reservation');setTimeout(()=>document.querySelector('.avail-months').scrollIntoView({behavior:'smooth'}),100)">
+      <input type="hidden" id="date-val">
     </div>
-    <div class="custom-select-dropdown" id="prints-dropdown">
-      <div class="custom-select-option" onclick="chooseSelect('prints','Sans impression — 180 € TTC',180)">Sans impression<span class="opt-price">180 €</span></div>
-      <div class="custom-select-option selected" onclick="chooseSelect('prints','100 impressions — 210 € TTC',210)">100 impressions<span class="opt-price">210 €</span></div>
-      <div class="custom-select-option" onclick="chooseSelect('prints','200 impressions — 230 € TTC',230)">200 impressions<span class="opt-price">230 €</span></div>
-      <div class="custom-select-option" onclick="chooseSelect('prints','300 impressions — 250 € TTC',250)">300 impressions<span class="opt-price">250 €</span></div>
-      <div class="custom-select-option" onclick="chooseSelect('prints','400 impressions — 270 € TTC',270)">400 impressions<span class="opt-price">270 €</span></div>
-      <div class="custom-select-option" onclick="chooseSelect('prints','500 impressions — 290 € TTC',290)">500 impressions<span class="opt-price">290 €</span></div>
-      <div class="custom-select-option" onclick="chooseSelect('prints','600 impressions — 310 € TTC',310)">600 impressions<span class="opt-price">310 €</span></div>
-      <div class="custom-select-option" onclick="chooseSelect('prints','700 impressions — 330 € TTC',330)">700 impressions<span class="opt-price">330 €</span></div>
+    <div class="form-row">
+      <label>Type d'événement</label>
+      <div class="custom-select-wrap">
+        <div class="custom-select-trigger" id="event-trigger" onclick="toggleSelect('event')">
+          <span id="event-value">Sélectionner...</span>
+          <span class="custom-select-arrow">▼</span>
+        </div>
+        <div class="custom-select-dropdown" id="event-dropdown">
+          <div class="custom-select-option" onclick="chooseSelect('event','Mariage','Mariage')">Mariage</div>
+          <div class="custom-select-option" onclick="chooseSelect('event','Anniversaire','Anniversaire')">Anniversaire</div>
+          <div class="custom-select-option" onclick="chooseSelect('event','Soirée d\'entreprise','Soirée d\'entreprise')">Soirée d'entreprise</div>
+          <div class="custom-select-option" onclick="chooseSelect('event','Baptême / Communion','Baptême / Communion')">Baptême / Communion</div>
+          <div class="custom-select-option" onclick="chooseSelect('event','Autre','Autre')">Autre</div>
+        </div>
+        <input type="hidden" id="type-event" value="">
+      </div>
     </div>
-    <input type="hidden" id="prints-val" value="210">
-  </div>
-</div>
+    <div class="form-row">
+      <label>Ville ou adresse de l'événement</label>
+      <input type="text" id="adresse" placeholder="Ex : Nancy, 54000" oninput="calculDistance()">
+      <div class="transport-info" id="transportInfo"></div>
+    </div>
 
-<div class="form-divider"></div>
-<div class="form-section-title">🤖 Options IA sélectionnées</div>
-<div class="extras-summary" id="form-ia-summary">
-  <div class="extras-sum-empty">Aucune option IA — <a href="#tarifs" onclick="smoothTo(event,'tarifs')" style="color:var(--gold);text-decoration:none">Choisir ci-dessus</a></div>
-</div>
+    <div class="form-divider"></div>
+    <div class="form-section-title">📸 Nombre d'impressions</div>
+    <div class="form-row">
+      <div class="custom-select-wrap">
+        <div class="custom-select-trigger" id="prints-trigger" onclick="toggleSelect('prints')">
+          <span id="prints-value">100 impressions — 210 € TTC</span>
+          <span class="custom-select-arrow">▼</span>
+        </div>
+        <div class="custom-select-dropdown" id="prints-dropdown">
+          <div class="custom-select-option" onclick="chooseSelect('prints','Sans impression — 180 € TTC',180)">Sans impression<span class="opt-price">180 €</span></div>
+          <div class="custom-select-option selected" onclick="chooseSelect('prints','100 impressions — 210 € TTC',210)">100 impressions<span class="opt-price">210 €</span></div>
+          <div class="custom-select-option" onclick="chooseSelect('prints','200 impressions — 230 € TTC',230)">200 impressions<span class="opt-price">230 €</span></div>
+          <div class="custom-select-option" onclick="chooseSelect('prints','300 impressions — 250 € TTC',250)">300 impressions<span class="opt-price">250 €</span></div>
+          <div class="custom-select-option" onclick="chooseSelect('prints','400 impressions — 270 € TTC',270)">400 impressions<span class="opt-price">270 €</span></div>
+          <div class="custom-select-option" onclick="chooseSelect('prints','500 impressions — 290 € TTC',290)">500 impressions<span class="opt-price">290 €</span></div>
+          <div class="custom-select-option" onclick="chooseSelect('prints','600 impressions — 310 € TTC',310)">600 impressions<span class="opt-price">310 €</span></div>
+          <div class="custom-select-option" onclick="chooseSelect('prints','700 impressions — 330 € TTC',330)">700 impressions<span class="opt-price">330 €</span></div>
+        </div>
+        <input type="hidden" id="prints-val" value="210">
+      </div>
+    </div>
 
-<div class="form-divider"></div>
-<div class="form-section-title">🎉 Locations complémentaires</div>
-<div class="extras-summary" id="form-extras-summary">
-  <div class="extras-sum-empty">Aucune option — <a href="#locations" onclick="smoothTo(event,'locations')" style="color:var(--gold);text-decoration:none">Voir les locations</a></div>
-</div>
+    <div class="form-divider"></div>
+    <div class="form-section-title">🤖 Options IA sélectionnées</div>
+    <div class="extras-summary" id="form-ia-summary">
+      <div class="extras-sum-empty">Aucune option IA — <a href="#tarifs" onclick="smoothTo(event,'tarifs')" style="color:var(--gold);text-decoration:none">Choisir ci-dessus</a></div>
+    </div>
 
-<div class="form-divider"></div>
-<div class="form-section-title">💳 Paiement de l'acompte (50%)</div>
-<div class="stripe-badge">
-  <span style="font-size:26px">💳</span>
-  <div>
-    <div style="font-size:13px;font-weight:600;color:var(--dark)">Stripe — Paiement sécurisé</div>
-    <div style="font-size:11px;color:var(--muted);margin-top:2px">CB · Virement · Apple Pay · Google Pay</div>
-  </div>
-  <div style="margin-left:auto;background:linear-gradient(135deg,var(--gold),var(--gold2));color:white;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px">Sécurisé</div>
-</div>
+    <div class="form-divider"></div>
+    <div class="form-section-title">🎉 Locations complémentaires</div>
+    <div class="extras-summary" id="form-extras-summary">
+      <div class="extras-sum-empty">Aucune option — <a href="#locations" onclick="smoothTo(event,'locations')" style="color:var(--gold);text-decoration:none">Voir les locations</a></div>
+    </div>
 
-<div class="form-divider"></div>
-<!-- RÉCAPITULATIF -->
-<div class="summary-box" id="summary-box">
-  <div class="sum-line"><span id="sum-prints-label">100 impressions</span><span id="sum-prints">210 €</span></div>
-  <div class="sum-line" id="sum-ia-line" style="display:none"><span>Options IA</span><span id="sum-ia">0 €</span></div>
-  <div class="sum-line" id="sum-extras-line" style="display:none"><span>Locations +</span><span id="sum-extras">0 €</span></div>
-  <div class="sum-line subtotal"><span>Total de la prestation TTC</span><span id="total-full">210 €</span></div>
-  <div class="sum-line acompte-line"><span>Acompte à régler (50%)</span><span id="total-price">105 €</span></div>
-  <div class="sum-line" id="sum-transport-line" style="display:none">
-    <span style="color:#c0392b">🚗 Transport (non inclus dans l'acompte)</span>
-    <span style="color:#c0392b" id="sum-transport">0 €</span>
-  </div>
-  <div id="transport-warning" style="display:none" class="sum-transport-note">
-    ⚠️ Le transport (~<span id="transport-warning-val">0</span> €) sera réglé en supplément le jour de la location. Il n'est <strong>pas inclus</strong> dans l'acompte.
-  </div>
-</div>
+    <div class="form-divider"></div>
+    <div class="form-section-title">💳 Paiement de l'acompte (50%)</div>
+    <div class="stripe-badge">
+      <span style="font-size:26px">💳</span>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:var(--dark)">Stripe — Paiement sécurisé</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">CB · Virement · Apple Pay · Google Pay</div>
+      </div>
+      <div style="margin-left:auto;background:linear-gradient(135deg,var(--gold),var(--gold2));color:white;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px">Sécurisé</div>
+    </div>
 
-<button class="btn-submit" onclick="submitForm()">Envoyer ma demande →</button>
-<p class="form-note">Confirmation sous 24h · Aucun engagement avant validation</p>
-```
+    <div class="form-divider"></div>
+    <!-- RÉCAPITULATIF -->
+    <div class="summary-box" id="summary-box">
+      <div class="sum-line"><span id="sum-prints-label">100 impressions</span><span id="sum-prints">210 €</span></div>
+      <div class="sum-line" id="sum-ia-line" style="display:none"><span>Options IA</span><span id="sum-ia">0 €</span></div>
+      <div class="sum-line" id="sum-extras-line" style="display:none"><span>Locations +</span><span id="sum-extras">0 €</span></div>
+      <div class="sum-line subtotal"><span>Total de la prestation TTC</span><span id="total-full">210 €</span></div>
+      <div class="sum-line acompte-line"><span>Acompte à régler (50%)</span><span id="total-price">105 €</span></div>
+      <div class="sum-line" id="sum-transport-line" style="display:none">
+        <span style="color:#c0392b">🚗 Transport (non inclus dans l'acompte)</span>
+        <span style="color:#c0392b" id="sum-transport">0 €</span>
+      </div>
+      <div id="transport-warning" style="display:none" class="sum-transport-note">
+        ⚠️ Le transport (~<span id="transport-warning-val">0</span> €) sera réglé en supplément le jour de la location. Il n'est <strong>pas inclus</strong> dans l'acompte.
+      </div>
+    </div>
 
+    <button class="btn-submit" onclick="submitForm()">Envoyer ma demande →</button>
+    <p class="form-note">Confirmation sous 24h · Aucun engagement avant validation</p>
   </div>
 </div>
 </div>
@@ -981,6 +966,5 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:0.06});
 document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
 </script>
-
 </body>
 </html>
