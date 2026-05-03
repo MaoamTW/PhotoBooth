@@ -839,6 +839,48 @@ function scrollToCalendar(){
   window.scrollTo({top: y, behavior: 'smooth'});
 }
 
+// ── PRINTS SELECTOR ──
+function selectPrint(el,price,label){
+  document.querySelectorAll('.print-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('prints-val').value=price;
+  document.getElementById('sum-prints-label').textContent=label;
+  document.getElementById('sum-prints').textContent=price+' €';
+  calculTotal();
+}
+
+// ── IA FROM FORM ──
+function toggleIAFromForm(id){
+  const mainCard=document.getElementById('card-'+id);
+  if(mainCard) toggleIACard(mainCard,id);
+  else{
+    // fallback direct toggle
+    if(id==='ia-none'){
+      Object.keys(iaState).forEach(k=>delete iaState[k]);
+      document.querySelectorAll('.ia-form-card').forEach(c=>c.classList.remove('selected'));
+      iaState['ia-none']={name:'Sans IA',price:0};
+      document.getElementById('fcard-ia-none').classList.add('selected');
+    } else {
+      const noneCard=document.getElementById('fcard-ia-none');
+      if(noneCard) noneCard.classList.remove('selected');
+      delete iaState['ia-none'];
+      const fc=document.getElementById('fcard-'+id);
+      if(!fc) return;
+      if(fc.classList.contains('selected')){
+        fc.classList.remove('selected');
+        delete iaState[id];
+      } else {
+        const names={'ia-costume':'IA Costumes','ia-fond':'IA Fonds','ia-friz':'Friz Generator'};
+        fc.classList.add('selected');
+        iaState[id]={name:names[id],price:60};
+      }
+    }
+    updateIAComboHint();
+    updateIAFormSummary();
+    calculTotal();
+  }
+}
+
 // ── SMOOTH SCROLL ──
 function smoothTo(e,id){if(e)e.preventDefault();const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
 
