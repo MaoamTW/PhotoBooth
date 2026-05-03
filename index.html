@@ -154,20 +154,25 @@ nav.scrolled{box-shadow:0 4px 30px rgba(123,63,160,.1)}
 .resa-box-title{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--violet);font-weight:600;margin-bottom:4px}
 .resa-box p{font-size:12px;color:var(--text2);line-height:1.5}
 /* Disponibilités */
-.avail-section{background:var(--white);border-radius:14px;padding:16px;border:1px solid rgba(201,148,42,.15);margin-bottom:20px}
+.avail-section{background:var(--white);border-radius:14px;padding:16px;border:1px solid rgba(201,148,42,.15);margin-bottom:20px;display:flex;flex-direction:column;align-items:center}
 .avail-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--violet);font-weight:600;margin-bottom:12px}
 .avail-months{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
 .avail-months::-webkit-scrollbar{display:none}
 .avail-month{min-width:200px;scroll-snap-align:start;flex-shrink:0}
-.avail-month-name{font-size:12px;font-weight:600;color:var(--dark);text-align:center;margin-bottom:8px}
-.avail-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
-.avail-dow{font-size:9px;text-align:center;color:var(--muted);font-weight:600;letter-spacing:.5px;padding:2px 0}
-.avail-day{height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;border:1.5px solid transparent}
+.avail-month-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;width:calc(7*34px + 6*2px)}
+.avail-month-name{font-size:13px;font-weight:700;color:var(--dark);text-align:center;flex:1}
+.avail-nav-btn{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--mid);background:transparent;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text2);flex-shrink:0;line-height:1}
+.avail-nav-btn:hover{border-color:var(--gold);color:var(--gold)}
+.avail-nav-btn:disabled{opacity:.3;cursor:not-allowed}
+.avail-cal{display:grid;grid-template-columns:repeat(7,34px);gap:2px;width:fit-content}
+.avail-dow{font-size:10px;text-align:center;color:var(--muted);font-weight:600;width:34px;padding:3px 0}
+.avail-day{height:34px;width:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;border:1.5px solid transparent}
 .avail-day.empty{cursor:default}
 .avail-day.available{background:var(--white);border-color:var(--mid);color:var(--text2)}
 .avail-day.available:hover,.avail-day.available.chosen{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:var(--gold);color:var(--white);font-weight:700}
 .avail-day.taken{background:#fce8e8;border-color:#f5c6c6;color:#c0392b;cursor:not-allowed;text-decoration:line-through;font-size:11px}
-.avail-day.past{background:rgba(0,0,0,.04);color:rgba(0,0,0,.2);cursor:not-allowed}
+.avail-day.past{background:rgba(0,0,0,.04);color:rgba(0,0,0,.18);cursor:not-allowed;font-size:11px}
+.avail-day.today{outline:2px solid var(--gold);outline-offset:-2px;font-weight:700}
 .avail-legend{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
 .rental-mode-btn{background:var(--white);border:1.5px solid var(--mid);color:var(--text2);padding:7px 14px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif}
 .rental-mode-btn.active{background:linear-gradient(135deg,var(--violet),var(--violet2));border-color:transparent;color:var(--white);box-shadow:0 3px 12px rgba(123,63,160,.35)}
@@ -176,45 +181,47 @@ nav.scrolled{box-shadow:0 4px 30px rgba(123,63,160,.1)}
 .avail-legend-dot{width:12px;height:12px;border-radius:3px}
 .avail-legend-dot.ld-free{background:var(--white);border:1.5px solid var(--mid)}
 .avail-legend-dot.ld-taken{background:#fce8e8;border:1.5px solid #f5c6c6}
+.avail-legend-dot.ld-past{background:rgba(0,0,0,.06);border:1.5px solid rgba(0,0,0,.1)}
 .avail-gcal-link{display:block;text-align:center;margin-top:12px;font-size:11px;color:var(--violet);text-decoration:none;font-weight:600}
 .avail-gcal-link:hover{text-decoration:underline}
 /* Form */
-.form-wrap{background:var(--white);border-radius:18px;padding:20px 16px;border:1px solid rgba(201,148,42,.12);box-shadow:0 12px 40px rgba(123,63,160,.07)}
-.form-section-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--violet);font-weight:600;margin-bottom:14px;padding-top:6px}
+.form-wrap{background:linear-gradient(160deg,#1a0f2e,#2d1a4a);border-radius:18px;padding:20px 16px;border:1px solid rgba(201,148,42,.25);box-shadow:0 12px 40px rgba(26,15,46,.35)}
+.form-section-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-light);font-weight:600;margin-bottom:14px;padding-top:6px}
 .form-row{margin-bottom:14px}
-.form-row label{display:block;font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:500}
-.form-row input{width:100%;background:var(--warm);border:2px solid transparent;color:var(--text);padding:12px 14px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;outline:none;transition:all .25s;appearance:none;-webkit-appearance:none}
-.form-row input:focus{border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(201,148,42,.1)}
+.form-row label{display:block;font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;font-weight:500}
+.form-row input{width:100%;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.12);color:var(--white);padding:12px 14px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;outline:none;transition:all .25s;appearance:none;-webkit-appearance:none}
+.form-row input::placeholder{color:rgba(255,255,255,.3)}
+.form-row input:focus{border-color:var(--gold);background:rgba(255,255,255,.12);box-shadow:0 0 0 3px rgba(201,148,42,.2)}
 .form-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .transport-info{font-size:11px;margin-top:5px;min-height:16px;font-weight:500}
-/* Custom select */
+/* Custom select — dark form */
 .custom-select-wrap{position:relative}
-.custom-select-trigger{width:100%;background:var(--warm);border:2px solid transparent;color:var(--text);padding:12px 14px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;cursor:pointer;transition:all .25s;display:flex;justify-content:space-between;align-items:center;user-select:none}
-.custom-select-trigger.open{border-color:var(--gold);background:var(--white)}
-.custom-select-arrow{font-size:9px;transition:transform .3s;color:var(--muted)}
+.custom-select-trigger{width:100%;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.12);color:var(--white);padding:12px 14px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;cursor:pointer;transition:all .25s;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.custom-select-trigger.open{border-color:var(--gold);background:rgba(255,255,255,.12)}
+.custom-select-arrow{font-size:9px;transition:transform .3s;color:rgba(255,255,255,.5)}
 .custom-select-trigger.open .custom-select-arrow{transform:rotate(180deg)}
-.custom-select-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--white);border:2px solid rgba(201,148,42,.25);border-radius:12px;box-shadow:0 16px 50px rgba(0,0,0,.12);z-index:50;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease;pointer-events:none}
+.custom-select-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#2d1a4a;border:1.5px solid rgba(201,148,42,.35);border-radius:12px;box-shadow:0 16px 50px rgba(0,0,0,.4);z-index:50;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .2s ease;pointer-events:none}
 .custom-select-dropdown.open{max-height:380px;opacity:1;pointer-events:all}
-.custom-select-option{padding:12px 14px;cursor:pointer;font-size:14px;color:var(--text2);transition:all .15s;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,.04)}
+.custom-select-option{padding:12px 14px;cursor:pointer;font-size:14px;color:rgba(255,255,255,.8);transition:all .15s;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)}
 .custom-select-option:last-child{border-bottom:none}
-.custom-select-option:hover,.custom-select-option:active{background:var(--warm)}
-.custom-select-option.selected{background:linear-gradient(135deg,#fdf5e6,#fff);color:var(--gold);font-weight:600}
-.custom-select-option .opt-price{font-size:12px;font-weight:700;color:var(--gold)}
-.form-divider{height:1px;background:var(--mid);margin:18px 0}
-/* Summary */
-.summary-box{background:linear-gradient(135deg,#fdf5e6,#f8eef8);border-radius:14px;padding:16px;margin-bottom:18px;border:1px solid rgba(201,148,42,.15)}
-.sum-line{display:flex;justify-content:space-between;font-size:13px;color:var(--text2);padding:5px 0}
-.sum-line.subtotal{font-size:15px;color:var(--dark);font-weight:600;border-top:2px solid rgba(201,148,42,.2);margin-top:8px;padding-top:12px}
-.sum-line.acompte-line{font-size:16px;color:var(--violet);font-weight:700;padding:8px 0 4px}
-.sum-transport-note{font-size:11px;color:#c0392b;margin-top:6px;background:#fff5f5;border:1px solid #f5c6c6;border-radius:8px;padding:8px 10px;line-height:1.5}
-.extras-summary{background:var(--warm);border-radius:10px;padding:10px 14px;margin-bottom:2px;border:1px solid var(--mid);min-height:38px}
-.extras-sum-item{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:var(--text2)}
-.extras-sum-empty{font-size:12px;color:var(--muted);font-style:italic}
+.custom-select-option:hover,.custom-select-option:active{background:rgba(255,255,255,.08);color:var(--white)}
+.custom-select-option.selected{background:rgba(201,148,42,.15);color:var(--gold-light);font-weight:600}
+.custom-select-option .opt-price{font-size:12px;font-weight:700;color:var(--gold-light)}
+.form-divider{height:1px;background:rgba(255,255,255,.1);margin:18px 0}
+/* Summary — dark form */
+.summary-box{background:rgba(255,255,255,.06);border-radius:14px;padding:16px;margin-bottom:18px;border:1px solid rgba(201,148,42,.3)}
+.sum-line{display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.7);padding:5px 0}
+.sum-line.subtotal{font-size:15px;color:var(--white);font-weight:600;border-top:2px solid rgba(201,148,42,.3);margin-top:8px;padding-top:12px}
+.sum-line.acompte-line{font-size:16px;color:var(--gold-light);font-weight:700;padding:8px 0 4px}
+.sum-transport-note{font-size:11px;color:#ffaaaa;margin-top:6px;background:rgba(192,57,43,.15);border:1px solid rgba(192,57,43,.3);border-radius:8px;padding:8px 10px;line-height:1.5}
+.extras-summary{background:rgba(255,255,255,.06);border-radius:10px;padding:10px 14px;margin-bottom:2px;border:1px solid rgba(255,255,255,.1);min-height:38px}
+.extras-sum-item{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:rgba(255,255,255,.75)}
+.extras-sum-empty{font-size:12px;color:rgba(255,255,255,.35);font-style:italic}
 /* Payment */
-.stripe-badge{background:var(--warm);border-radius:12px;padding:14px 16px;border:2px solid var(--gold);display:flex;align-items:center;gap:12px}
-.btn-submit{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--white);border:none;padding:16px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;border-radius:12px;transition:all .3s;box-shadow:0 6px 24px rgba(201,148,42,.4);margin-top:4px}
+.stripe-badge{background:rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;border:2px solid rgba(201,148,42,.5);display:flex;align-items:center;gap:12px}
+.btn-submit{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);border:none;padding:16px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;border-radius:12px;transition:all .3s;box-shadow:0 6px 24px rgba(201,148,42,.5);margin-top:4px}
 .btn-submit:active{transform:scale(.98)}
-.form-note{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
+.form-note{text-align:center;font-size:11px;color:rgba(255,255,255,.35);margin-top:10px}
 
 /* ── ENTREPRISE PAGE ── */
 #page-enterprise{display:none;position:fixed;inset:0;z-index:200;background:var(--cream);overflow-y:auto}
@@ -630,12 +637,12 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
     <div class="form-divider"></div>
     <div class="form-section-title">📅 Votre événement</div>
     <div class="form-row">
-      <label>Date sélectionnée</label>
-      <input type="text" id="date-display" placeholder="Cliquez sur une date ci-dessus" readonly style="cursor:pointer;background:var(--warm)" onclick="smoothTo(event,'reservation');setTimeout(()=>document.querySelector('.avail-months').scrollIntoView({behavior:'smooth'}),100)">
+      <label style="color:#ff6b6b!important">Date sélectionnée</label>
+      <input type="text" id="date-display" placeholder="Cliquez sur une date ci-dessus ↑" readonly style="cursor:pointer" onclick="scrollToCalendar()">
       <input type="hidden" id="date-val">
     </div>
     <div class="form-row">
-      <label>Type d'événement</label>
+      <label style="color:#ff6b6b!important">Type d'événement</label>
       <div class="custom-select-wrap">
         <div class="custom-select-trigger" id="event-trigger" onclick="toggleSelect('event')">
           <span id="event-value">Sélectionner...</span>
@@ -652,7 +659,7 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
       </div>
     </div>
     <div class="form-row">
-      <label>Ville ou adresse de l'événement</label>
+      <label style="color:#ff6b6b!important">Ville ou adresse de l'événement</label>
       <input type="text" id="adresse" placeholder="Ex : Nancy, 54000" oninput="calculDistance()">
       <div class="transport-info" id="transportInfo"></div>
     </div>
@@ -696,8 +703,8 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
     <div class="stripe-badge">
       <span style="font-size:26px">💳</span>
       <div>
-        <div style="font-size:13px;font-weight:600;color:var(--dark)">Stripe — Paiement sécurisé</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px">CB · Virement · Apple Pay · Google Pay</div>
+        <div style="font-size:13px;font-weight:600;color:var(--white)">Stripe — Paiement sécurisé</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:2px">CB · Virement · Apple Pay · Google Pay</div>
       </div>
       <div style="margin-left:auto;background:linear-gradient(135deg,var(--gold),var(--gold2));color:white;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px">Sécurisé</div>
     </div>
@@ -741,6 +748,16 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
 window.addEventListener('load',()=>{
   if(!window.location.hash){window.scrollTo(0,0)}
 });
+// ── SCROLL TO CALENDAR (full view on mobile) ──
+function scrollToCalendar(){
+  const cal = document.getElementById('avail-months');
+  if(!cal) return;
+  // Scroll so the calendar title is at top with offset for nav
+  const avail = cal.closest('.avail-card') || cal.parentElement.parentElement;
+  const y = avail.getBoundingClientRect().top + window.scrollY - 70;
+  window.scrollTo({top: y, behavior: 'smooth'});
+}
+
 // ── SMOOTH SCROLL ──
 function smoothTo(e,id){if(e)e.preventDefault();const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
 
@@ -798,46 +815,54 @@ function pickDate(dateStr){
   document.getElementById('avail-months').innerHTML='';
   buildCalendar();
 }
+let calMonthOffset=0;
+function navMonth(delta){
+  calMonthOffset+=delta;
+  if(calMonthOffset<0)calMonthOffset=0; // pas avant aujourd'hui
+  document.getElementById('avail-months').innerHTML='';
+  buildCalendar();
+}
 function buildCalendar(){
   const container=document.getElementById('avail-months');
+  container.innerHTML='';
   const today=new Date();
-  // Afficher 3 mois
-  for(let m=0;m<3;m++){
-    const d=new Date(today.getFullYear(),today.getMonth()+m,1);
-    const yr=d.getFullYear(),mo=d.getMonth();
-    const monthNames=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-    const wrap=document.createElement('div');
-    wrap.className='avail-month';
-    let html=`<div class="avail-month-name">${monthNames[mo]} ${yr}</div><div class="avail-cal">`;
-    // dow headers
-    ['Lu','Ma','Me','Je','Ve','Sa','Di'].forEach(d=>{html+=`<div class="avail-dow">${d}</div>`});
-    // blank slots
-    let startDow=new Date(yr,mo,1).getDay();
-    if(startDow===0)startDow=7;
-    for(let i=1;i<startDow;i++)html+=`<div class="avail-day empty"></div>`;
-    // days
-    const daysInMonth=new Date(yr,mo+1,0).getDate();
-    for(let day=1;day<=daysInMonth;day++){
-      const dateStr=`${yr}-${String(mo+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-      const thisDate=new Date(yr,mo,day);
-      const isPast=thisDate<new Date(today.getFullYear(),today.getMonth(),today.getDate());
-      const isTaken=RESERVED_DATES.includes(dateStr);
-      let cls='avail-day';
-      if(isPast)cls+=' past';
-      else if(isTaken)cls+=' taken';
-      else{
-        cls+=' available';
-        if(rangeStart&&rangeEnd&&dateStr>=rangeStart&&dateStr<=rangeEnd)cls+=' in-range';
-        if(dateStr===rangeStart||dateStr===rangeEnd)cls+=' chosen';
-      }
-
-      const click=(!isPast&&!isTaken)?`onclick="pickDate('${dateStr}')"`:''
-      html+=`<div class="${cls}" ${click}>${day}</div>`;
+  const todayMidnight=new Date(today.getFullYear(),today.getMonth(),today.getDate());
+  const d=new Date(today.getFullYear(),today.getMonth()+calMonthOffset,1);
+  const yr=d.getFullYear(),mo=d.getMonth();
+  const monthNames=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const wrap=document.createElement('div');
+  wrap.className='avail-month';
+  let html=`<div class="avail-month-header">
+    <button class="avail-nav-btn" onclick="navMonth(-1)" ${calMonthOffset===0?'disabled':''}>‹</button>
+    <span class="avail-month-name">${monthNames[mo]} ${yr}</span>
+    <button class="avail-nav-btn" onclick="navMonth(1)">›</button>
+  </div><div class="avail-cal">`;
+  ['Lu','Ma','Me','Je','Ve','Sa','Di'].forEach(d=>{html+=`<div class="avail-dow">${d}</div>`});
+  let startDow=new Date(yr,mo,1).getDay();
+  if(startDow===0)startDow=7;
+  for(let i=1;i<startDow;i++)html+=`<div class="avail-day empty"></div>`;
+  const daysInMonth=new Date(yr,mo+1,0).getDate();
+  for(let day=1;day<=daysInMonth;day++){
+    const dateStr=`${yr}-${String(mo+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const thisDate=new Date(yr,mo,day);
+    const isPast=thisDate<todayMidnight;
+    const isToday=thisDate.getTime()===todayMidnight.getTime();
+    const isTaken=RESERVED_DATES.includes(dateStr);
+    let cls='avail-day';
+    if(isPast)cls+=' past';
+    else if(isTaken)cls+=' taken';
+    else{
+      cls+=' available';
+      if(rangeStart&&rangeEnd&&dateStr>=rangeStart&&dateStr<=rangeEnd)cls+=' in-range';
+      if(dateStr===rangeStart||dateStr===rangeEnd)cls+=' chosen';
     }
-    html+='</div>';
-    wrap.innerHTML=html;
-    container.appendChild(wrap);
+    if(isToday&&!isPast)cls+=' today';
+    const click=(!isPast&&!isTaken)?`onclick="pickDate('${dateStr}')"`:''
+    html+=`<div class="${cls}" ${click}>${day}</div>`;
   }
+  html+='</div>';
+  wrap.innerHTML=html;
+  container.appendChild(wrap);
 }
 buildCalendar();
 
@@ -1019,12 +1044,12 @@ async function calculDistance(){
     dist*=(dist<10?1.2:dist<30?1.3:1.4);
     if(dist<=15){
       transportEstimate=0;
-      info.innerHTML='<span style="color:var(--violet)">📍 ~'+dist.toFixed(1)+' km — Livraison offerte ✓</span>';
+      info.innerHTML='<span style="color:#86efac">📍 ~'+dist.toFixed(1)+' km — Livraison offerte ✓</span>';
       document.getElementById('sum-transport-line').style.display='none';
       document.getElementById('transport-warning').style.display='none';
     }else{
       transportEstimate=Math.ceil((dist-15)*0.5*2)/2;
-      info.innerHTML='<span style="color:#c0392b">📍 ~'+dist.toFixed(1)+' km — Transport estimé : ~'+transportEstimate.toFixed(2)+' € (réglé le jour J, non inclus dans l\'acompte)</span>';
+      info.innerHTML='<span style="color:#fca5a5">📍 ~'+dist.toFixed(1)+' km — Transport estimé : ~'+transportEstimate.toFixed(2)+' € (réglé le jour J, non inclus dans l\'acompte)</span>';
       document.getElementById('sum-transport-line').style.display='flex';
       document.getElementById('sum-transport').textContent='~'+transportEstimate.toFixed(2)+' €';
       document.getElementById('transport-warning').style.display='block';
