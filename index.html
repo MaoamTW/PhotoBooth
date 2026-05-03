@@ -154,17 +154,17 @@ nav.scrolled{box-shadow:0 4px 30px rgba(123,63,160,.1)}
 .resa-box-title{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--violet);font-weight:600;margin-bottom:4px}
 .resa-box p{font-size:12px;color:var(--text2);line-height:1.5}
 /* Disponibilités */
-.avail-section{background:var(--white);border-radius:14px;padding:16px;border:1px solid rgba(201,148,42,.15);margin-bottom:20px;display:flex;flex-direction:column;align-items:center}
+.avail-section{background:var(--white);border-radius:14px;padding:16px 20px;border:1px solid rgba(201,148,42,.15);margin-bottom:20px;text-align:center}
 .avail-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--violet);font-weight:600;margin-bottom:12px}
 .avail-months{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
 .avail-months::-webkit-scrollbar{display:none}
 .avail-month{min-width:200px;scroll-snap-align:start;flex-shrink:0}
-.avail-month-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;width:calc(7*34px + 6*2px)}
+.avail-month-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;width:250px}
 .avail-month-name{font-size:13px;font-weight:700;color:var(--dark);text-align:center;flex:1}
 .avail-nav-btn{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--mid);background:transparent;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text2);flex-shrink:0;line-height:1}
 .avail-nav-btn:hover{border-color:var(--gold);color:var(--gold)}
 .avail-nav-btn:disabled{opacity:.3;cursor:not-allowed}
-.avail-cal{display:grid;grid-template-columns:repeat(7,34px);gap:2px;width:fit-content}
+.avail-cal{display:grid;grid-template-columns:repeat(7,34px);gap:2px}
 .avail-dow{font-size:10px;text-align:center;color:var(--muted);font-weight:600;width:34px;padding:3px 0}
 .avail-day{height:34px;width:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;border:1.5px solid transparent}
 .avail-day.empty{cursor:default}
@@ -173,7 +173,7 @@ nav.scrolled{box-shadow:0 4px 30px rgba(123,63,160,.1)}
 .avail-day.taken{background:#fce8e8;border-color:#f5c6c6;color:#c0392b;cursor:not-allowed;text-decoration:line-through;font-size:11px}
 .avail-day.past{background:rgba(0,0,0,.04);color:rgba(0,0,0,.18);cursor:not-allowed;font-size:11px}
 .avail-day.today{outline:2px solid var(--gold);outline-offset:-2px;font-weight:700}
-.avail-legend{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
+.avail-legend{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;justify-content:center}
 .rental-mode-btn{background:var(--white);border:1.5px solid var(--mid);color:var(--text2);padding:7px 14px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif}
 .rental-mode-btn.active{background:linear-gradient(135deg,var(--violet),var(--violet2));border-color:transparent;color:var(--white);box-shadow:0 3px 12px rgba(123,63,160,.35)}
 .avail-day.in-range{background:rgba(123,63,160,.15);border-color:rgba(123,63,160,.3);color:var(--violet)}
@@ -590,7 +590,7 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
   <!-- Disponibilités FIRST -->
   <div class="avail-section reveal" style="margin-top:20px">
     <div class="avail-title">📅 Disponibilités — choisissez votre date</div>
-    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;justify-content:center">
       <button class="rental-mode-btn active" id="btn-single" onclick="setRentalMode('single')">📅 Journée unique</button>
       <button class="rental-mode-btn" id="btn-multi" onclick="setRentalMode('multi')">📅📅 Plusieurs jours</button>
     </div>
@@ -637,12 +637,12 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
     <div class="form-divider"></div>
     <div class="form-section-title">📅 Votre événement</div>
     <div class="form-row">
-      <label style="color:#ff6b6b!important">Date sélectionnée</label>
+      <label id="lbl-date" style="color:#ff6b6b;transition:color .3s">Date sélectionnée</label>
       <input type="text" id="date-display" placeholder="Cliquez sur une date ci-dessus ↑" readonly style="cursor:pointer" onclick="scrollToCalendar()">
       <input type="hidden" id="date-val">
     </div>
     <div class="form-row">
-      <label style="color:#ff6b6b!important">Type d'événement</label>
+      <label id="lbl-event" style="color:#ff6b6b;transition:color .3s">Type d'événement</label>
       <div class="custom-select-wrap">
         <div class="custom-select-trigger" id="event-trigger" onclick="toggleSelect('event')">
           <span id="event-value">Sélectionner...</span>
@@ -659,8 +659,8 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
       </div>
     </div>
     <div class="form-row">
-      <label style="color:#ff6b6b!important">Ville ou adresse de l'événement</label>
-      <input type="text" id="adresse" placeholder="Ex : Nancy, 54000" oninput="calculDistance()">
+      <label id="lbl-adresse" style="color:#ff6b6b;transition:color .3s">Ville ou adresse de l'événement</label>
+      <input type="text" id="adresse" placeholder="Ex : Nancy, 54000" oninput="calculDistance();const l=document.getElementById('lbl-adresse');if(l&&this.value.length>2)l.style.color='rgba(255,255,255,.5)';else if(l&&!this.value)l.style.color='#ff6b6b'">
       <div class="transport-info" id="transportInfo"></div>
     </div>
 
@@ -715,14 +715,18 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
       <div class="sum-line"><span id="sum-prints-label">100 impressions</span><span id="sum-prints">210 €</span></div>
       <div class="sum-line" id="sum-ia-line" style="display:none"><span>Options IA</span><span id="sum-ia">0 €</span></div>
       <div class="sum-line" id="sum-extras-line" style="display:none"><span>Locations +</span><span id="sum-extras">0 €</span></div>
-      <div class="sum-line subtotal"><span>Total de la prestation TTC</span><span id="total-full">210 €</span></div>
+      <div class="sum-line subtotal"><span>Total prestation TTC</span><span id="total-full">210 €</span></div>
       <div class="sum-line acompte-line"><span>Acompte à régler (50%)</span><span id="total-price">105 €</span></div>
       <div class="sum-line" id="sum-transport-line" style="display:none">
-        <span style="color:#c0392b">🚗 Transport (non inclus dans l'acompte)</span>
-        <span style="color:#c0392b" id="sum-transport">0 €</span>
+        <span style="color:#fca5a5">🚗 Transport estimé*</span>
+        <span style="color:#fca5a5" id="sum-transport">0 €</span>
+      </div>
+      <div class="sum-line" id="sum-total-transport-line" style="display:none">
+        <span style="color:rgba(255,255,255,.5);font-size:12px">Total estimé avec transport*</span>
+        <span style="color:rgba(255,255,255,.7);font-size:12px" id="sum-total-with-transport">0 €</span>
       </div>
       <div id="transport-warning" style="display:none" class="sum-transport-note">
-        ⚠️ Le transport (~<span id="transport-warning-val">0</span> €) sera réglé en supplément le jour de la location. Il n'est <strong>pas inclus</strong> dans l'acompte.
+        ⚠️ *Transport approximatif (~<span id="transport-warning-val">0</span> €) réglé le jour J, <strong>non inclus</strong> dans l'acompte.
       </div>
     </div>
 
@@ -800,6 +804,7 @@ function pickDate(dateStr){
     const months=['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
     document.getElementById('date-display').value=parseInt(d)+' '+months[parseInt(m)-1]+' '+y;
     document.getElementById('date-display').style.borderColor='var(--gold)';
+    const lblD=document.getElementById('lbl-date');if(lblD)lblD.style.color='rgba(255,255,255,.5)';
   } else {
     if(!rangeStart||rangeEnd){
       rangeStart=dateStr;rangeEnd=null;
@@ -908,6 +913,9 @@ function chooseSelect(id,label,value){
     document.getElementById('prints-val').value=value;
     document.getElementById('sum-prints-label').textContent=label.split('—')[0].trim();
     document.getElementById('sum-prints').textContent=value+' €';
+  }
+  if(id==='event'){
+    const lblE=document.getElementById('lbl-event');if(lblE)lblE.style.color='rgba(255,255,255,.5)';
   }
   calculTotal();
 }
@@ -1075,6 +1083,20 @@ function calculTotal(){
   if(iaExtra>0){il.style.display='flex';document.getElementById('sum-ia').textContent=iaExtra+' €'}else il.style.display='none';
   const el2=document.getElementById('sum-extras-line');
   if(extrasTotal>0){el2.style.display='flex';document.getElementById('sum-extras').textContent=extrasTotal.toFixed(2)+' €'}else el2.style.display='none';
+  // Transport lines
+  const tl=document.getElementById('sum-transport-line');
+  const ttl=document.getElementById('sum-total-transport-line');
+  const tw=document.getElementById('transport-warning');
+  if(transportEstimate>0){
+    tl.style.display='flex';
+    document.getElementById('sum-transport').textContent='~'+transportEstimate.toFixed(2)+' €';
+    ttl.style.display='flex';
+    document.getElementById('sum-total-with-transport').textContent='~'+(subtotal+transportEstimate).toFixed(2)+' €';
+    tw.style.display='block';
+    document.getElementById('transport-warning-val').textContent=transportEstimate.toFixed(2);
+  } else {
+    tl.style.display='none';ttl.style.display='none';tw.style.display='none';
+  }
 }
 calculTotal();
 
