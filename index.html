@@ -104,6 +104,18 @@ nav.scrolled{box-shadow:0 4px 30px rgba(123,63,160,.1)}
 .ia-combo-hint{text-align:center;margin-top:12px;font-size:12px;color:var(--violet);font-style:italic;font-weight:500}
 .ia-card-see-video{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:11px;color:var(--violet);font-weight:600;background:rgba(123,63,160,.08);border:1px solid rgba(123,63,160,.25);padding:4px 10px;border-radius:100px;cursor:pointer;transition:all .2s}
 .ia-card-see-video:hover,.ia-card-see-video:active{background:rgba(123,63,160,.15)}
+/* Pricing banner */
+.ia-pricing-banner{background:linear-gradient(135deg,#1a0f2e,#2d1a4a);border-radius:16px;padding:18px 16px 14px;margin-top:16px}
+.ia-pricing-row{display:flex;align-items:center;justify-content:center;gap:6px}
+.ia-pricing-col{flex:1;text-align:center;background:rgba(255,255,255,.07);border-radius:12px;padding:12px 6px 10px;border:1px solid rgba(255,255,255,.1);position:relative}
+.ia-pricing-col.best{background:rgba(201,148,42,.15);border-color:rgba(201,148,42,.4)}
+.ia-pricing-col.best2{background:rgba(201,148,42,.22);border-color:rgba(201,148,42,.6)}
+.ia-pricing-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);font-size:9px;font-weight:700;padding:2px 8px;border-radius:100px;white-space:nowrap}
+.ia-pricing-num{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:4px;font-weight:500}
+.ia-pricing-price{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--white)}
+.ia-pricing-col.best .ia-pricing-price,.ia-pricing-col.best2 .ia-pricing-price{color:var(--gold-light)}
+.ia-pricing-sep{color:rgba(255,255,255,.3);font-size:18px;font-weight:300;flex-shrink:0}
+.ia-pricing-note{text-align:center;margin-top:12px;font-size:12px;color:var(--gold-light);font-style:italic;font-weight:500;min-height:18px}
 /* "En savoir plus" button on IA cards */
 .ia-card-more{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:12px;color:var(--dark);font-weight:700;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;padding:7px 14px;border-radius:100px;cursor:pointer;transition:all .25s;box-shadow:0 3px 12px rgba(201,148,42,.45)}
 .ia-card-more:hover,.ia-card-more:active{transform:scale(.97);box-shadow:0 2px 8px rgba(201,148,42,.3)}
@@ -447,7 +459,7 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
       <div class="ia-card-body">
         <div class="ia-card-name">IA Générative — Costumes</div>
         <div class="ia-card-desc">Transformez vos invités en superhéros ou personnages fantastiques en 5 sec. Jusqu'à 8 personnes.</div>
-        <div class="ia-card-price">+60 € TTC</div>
+        <div class="ia-card-price" id="price-ia-costume">+60 € TTC</div>
         <button class="ia-card-see-video" onclick="scrollToVideo(event,0)">▶ Voir la démo</button>
       </div>
       <div class="ia-check">✓</div>
@@ -457,7 +469,7 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
       <div class="ia-card-body">
         <div class="ia-card-name">IA Générative — Fonds</div>
         <div class="ia-card-desc">Changez le décor sans fond vert. Plage, espace, forêt… décors illimités et réalistes.</div>
-        <div class="ia-card-price">+60 € TTC</div>
+        <div class="ia-card-price" id="price-ia-fond">+60 € TTC</div>
         <button class="ia-card-see-video" onclick="scrollToVideo(event,1)">▶ Voir la démo</button>
       </div>
       <div class="ia-check">✓</div>
@@ -467,13 +479,33 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
       <div class="ia-card-body">
         <div class="ia-card-name">Friz Generator</div>
         <div class="ia-card-desc">Rassemblez tous vos invités sur un support photo &amp; vidéo unique. Souvenirs collectifs mémorables.</div>
-        <div class="ia-card-price">+60 € TTC</div>
+        <div class="ia-card-price" id="price-ia-friz">+60 € TTC</div>
         <button class="ia-card-see-video" onclick="scrollToVideo(event,2)">▶ Voir la démo</button>
       </div>
       <div class="ia-check">✓</div>
     </div>
   </div>
-  <p class="ia-combo-hint" id="ia-combo-hint"></p>
+  <div class="ia-pricing-banner reveal" id="ia-pricing-banner">
+    <div class="ia-pricing-row">
+      <div class="ia-pricing-col">
+        <div class="ia-pricing-num">1 option</div>
+        <div class="ia-pricing-price">60 € TTC</div>
+      </div>
+      <div class="ia-pricing-sep">+</div>
+      <div class="ia-pricing-col best">
+        <div class="ia-pricing-badge">Économie 30€</div>
+        <div class="ia-pricing-num">2 options</div>
+        <div class="ia-pricing-price">90 € TTC</div>
+      </div>
+      <div class="ia-pricing-sep">+</div>
+      <div class="ia-pricing-col best2">
+        <div class="ia-pricing-badge">Économie 70€</div>
+        <div class="ia-pricing-num">3 options</div>
+        <div class="ia-pricing-price">110 € TTC</div>
+      </div>
+    </div>
+    <p class="ia-pricing-note" id="ia-combo-hint"></p>
+  </div>
 </div>
 </div>
 
@@ -879,11 +911,36 @@ function toggleIACard(el,id){
   updateIAComboHint();updateIAFormSummary();calculTotal();
 }
 function updateIAComboHint(){
-  const count=Object.keys(iaState).filter(k=>k!=='ia-none').length;
+  const selectedKeys=Object.keys(iaState).filter(k=>k!=='ia-none');
+  const count=selectedKeys.length;
   const hint=document.getElementById('ia-combo-hint');
-  if(count===2)hint.textContent='✦ Combo 2 options : 90 € TTC au lieu de 120 €';
-  else if(count>=3)hint.textContent='✦ Pack Ultime 3 options : 110 € TTC au lieu de 180 €';
+  // Update combo hint text
+  if(count===2)hint.textContent='✦ Combo actif : vous économisez 30 € !';
+  else if(count>=3)hint.textContent='✦ Pack Ultime : vous économisez 70 € !';
   else hint.textContent='';
+  // Update each card price display
+  const priceMap={'ia-costume':null,'ia-fond':null,'ia-friz':null};
+  const allIds=['ia-costume','ia-fond','ia-friz'];
+  if(count===0){
+    allIds.forEach(id=>{const el=document.getElementById('price-'+id);if(el)el.textContent='+60 € TTC'});
+  } else if(count===1){
+    allIds.forEach(id=>{
+      const el=document.getElementById('price-'+id);if(!el)return;
+      if(selectedKeys.includes(id))el.textContent='60 € TTC';
+      else el.textContent='+60 € → 90 € TTC si ajouté';
+    });
+  } else if(count===2){
+    allIds.forEach(id=>{
+      const el=document.getElementById('price-'+id);if(!el)return;
+      if(selectedKeys.includes(id))el.textContent='Inclus — 90 € TTC total';
+      else el.textContent='+20 € → 110 € TTC si ajouté';
+    });
+  } else if(count>=3){
+    allIds.forEach(id=>{
+      const el=document.getElementById('price-'+id);if(!el)return;
+      el.textContent='Inclus — 110 € TTC total';
+    });
+  }
 }
 function updateIAFormSummary(){
   const box=document.getElementById('form-ia-summary');
