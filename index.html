@@ -304,6 +304,14 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
   .ia-card{padding:22px 20px}
   .extras-grid{grid-template-columns:repeat(3,1fr);gap:18px}
 }
+/* ── PHOTOBOOTH GALLERY TOUCH ANIMATION ── */
+.pb-screen-flash{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,rgba(201,148,42,.18) 0%,transparent 65%);animation:pbScreenGlow 2.2s ease-in-out infinite;pointer-events:none;z-index:5}
+@keyframes pbScreenGlow{0%,100%{opacity:0}40%,60%{opacity:1}}
+.pb-touch-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);box-shadow:0 0 8px 3px rgba(201,148,42,.8);animation:pbDotPulse 2.2s ease-in-out infinite;z-index:11;pointer-events:none}
+@keyframes pbDotPulse{0%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}50%{opacity:.7;transform:translate(-50%,-50%) scale(.85)}}
+.pb-touch-ripple{position:absolute;border-radius:50%;background:rgba(201,148,42,.6);transform:translate(-50%,-50%) scale(0);animation:pbRipple 2.2s ease-out infinite;pointer-events:none;z-index:10}
+@keyframes pbRipple{0%{transform:translate(-50%,-50%) scale(0);opacity:1}70%{opacity:.4}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+
 </style>
 </head>
 <body>
@@ -408,6 +416,61 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
     <a href="#reservation" class="btn-gold" onclick="smoothTo(event,'reservation')">Réserver maintenant</a>
     <a href="#avantapres" class="btn-outline" onclick="smoothTo(event,'avantapres')">Voir la magie</a>
   </div>
+</div>
+
+<!-- ── GALERIE PHOTOBOOTH ── -->
+<div style="background:linear-gradient(180deg,#1a0f2e 0%,#2d1a4a 100%);padding:40px 16px 8px">
+<div style="max-width:900px;margin:0 auto">
+  <span class="s-label" style="color:var(--gold)">Le photobooth</span>
+  <h2 class="s-title" style="color:var(--white)">Découvrez notre<br><em>photobooth</em></h2>
+  <p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.55;margin-top:8px;margin-bottom:20px">
+    Compact, élégant, ultra-simple. Il s'invite partout — mariage, anniversaire, corporate.
+  </p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+
+    <!-- Photo 1 — Soirée -->
+    <div style="position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;box-shadow:0 8px 24px rgba(0,0,0,.4)">
+      <img src="https://i.imgur.com/30fNZuH.jpeg" alt="Photobooth soirée" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,46,.45),transparent 60%)"></div>
+      <div style="position:absolute;bottom:10px;left:10px;background:rgba(26,15,46,.82);border:1px solid rgba(201,148,42,.4);color:#f5d080;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:100px;backdrop-filter:blur(6px)">🎉 Soirée</div>
+    </div>
+
+    <!-- Photo 2 — Mariage -->
+    <div style="position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;box-shadow:0 8px 24px rgba(0,0,0,.4)">
+      <img src="https://i.imgur.com/6KN0L3j.jpeg" alt="Photobooth mariage" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,46,.45),transparent 60%)"></div>
+      <div style="position:absolute;bottom:10px;left:10px;background:rgba(26,15,46,.82);border:1px solid rgba(201,148,42,.4);color:#f5d080;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:100px;backdrop-filter:blur(6px)">💍 Mariage</div>
+    </div>
+
+    <!-- Photo 3 — Anniversaire -->
+    <div style="position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;box-shadow:0 8px 24px rgba(0,0,0,.4)">
+      <img src="https://i.imgur.com/9eGMSZ9.jpeg" alt="Photobooth anniversaire" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,46,.45),transparent 60%)"></div>
+      <div style="position:absolute;bottom:10px;left:10px;background:rgba(26,15,46,.82);border:1px solid rgba(201,148,42,.4);color:#f5d080;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:100px;backdrop-filter:blur(6px)">🎂 Anniversaire</div>
+    </div>
+
+    <!-- Photo 4 — IA Tactile (animation ripple) -->
+    <div style="position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;box-shadow:0 8px 24px rgba(0,0,0,.4)">
+      <img src="https://i.imgur.com/bf5gnEQ.jpeg" alt="Interface IA photobooth" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,46,.45),transparent 60%)"></div>
+
+      <!-- Screen glow -->
+      <div class="pb-screen-flash"></div>
+
+      <!-- Touch ripples à la position du doigt (~68% left, ~57% top) -->
+      <div class="pb-touch-dot"    style="left:68%;top:57%"></div>
+      <div class="pb-touch-ripple" style="left:68%;top:57%;width:28px;height:28px;animation-delay:0s"></div>
+      <div class="pb-touch-ripple" style="left:68%;top:57%;width:46px;height:46px;animation-delay:.3s;background:rgba(201,148,42,.3)"></div>
+      <div class="pb-touch-ripple" style="left:68%;top:57%;width:64px;height:64px;animation-delay:.6s;background:rgba(201,148,42,.15)"></div>
+
+      <div style="position:absolute;bottom:10px;left:10px;background:rgba(26,15,46,.82);border:1px solid rgba(201,148,42,.4);color:#f5d080;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:100px;backdrop-filter:blur(6px);z-index:6">🤖 IA intégrée</div>
+    </div>
+
+  </div>
+
+  <div style="width:60px;height:2px;background:linear-gradient(90deg,var(--gold),var(--violet));border-radius:2px;margin:20px auto 0;opacity:.6"></div>
+</div>
 </div>
 
 <!-- ── VIDÉOS IA ── -->
@@ -617,7 +680,7 @@ footer{background:var(--dark);padding:36px 16px;display:flex;flex-direction:colu
     </div>
     <div class="resa-box">
       <div class="resa-box-title">💳 Paiement</div>
-      <p>Acompte de <strong>50%</strong> via <strong>Stripe</strong> (CB, virement). Solde le jour J.</p>
+      <p>Acompte de <strong>50%</strong> via <strong>Stripe</strong> (virement). Solde le jour J.</p>
     </div>
 	<div class="resa-box">
       <div class="resa-box-title">Période location</div>
